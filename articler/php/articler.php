@@ -78,17 +78,14 @@ function parse($input)
 }
 
 /** */
-function parse_title($input, $level, $skip_chars, $to_html)
+function parse_title($input, $level, $skip_chars, $to_html_function_name)
 {
     $ir = read_line($input, $skip_chars, $level);
-    return new IR($to_html($ir->data), $ir->remaining);
+    return new IR($to_html_function_name($ir->data), $ir->remaining);
 }
 
 function parse_figure($input)
 {
-    global $lineno;
-
-    // $lineno++;
     return new IR("FIGURE", "");
 }
 
@@ -104,20 +101,20 @@ function parse_paragraph($input)
         array_push($lines, $ir->data);
         $input = $ir->remaining;
 
+        // Paragraph FOLLOWSET: {"\n", "#", "["}
         if (starts_with($input, "\n"))
         {
             $lineno++;
             $input = substr($input, 1);
             break;
         }
-
         if (starts_with($input, "#"))
             break;
         if (starts_with($input, "["))
             break;
     }
 
-    return new IR(paragraph_html(join("", $lines)), $input);
+    return new IR(paragraph_html(join(" ", $lines)), $input);
 }
 
 /** substring from $from to first instance of the string $to */
