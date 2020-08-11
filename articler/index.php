@@ -48,7 +48,7 @@
         ![caption]('location')
         
         ## links
-        empty
+        []()
 
         EOT;
         ?>

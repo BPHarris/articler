@@ -9,7 +9,7 @@ require_once("html.php");
 
 /**
  * 
- * TODO: b, i, u
+ * TODO: b, i, u, a inside para
  * 
  * Articler Language Grammar (*.articler)
  *      articler    ::= (title | h1 | h2 | p | figure | NEWLINE)*
@@ -19,9 +19,6 @@ require_once("html.php");
  *      h1          ::= '##'  LINE
  *      h1          ::= '###' LINE
  *      p           ::= LINE+ NEWLINE
- * 
- *      a           ::= '[' URL ']' '('         ')' NEWLINE
- *                  |   '[' URL ']' '(' CAPTION ')' NEWLINE
  * 
  *      figure      ::= '!' '[' ']' '('        ')' NEWLINE
  *                  |   '!' '[' ']' '('  URL   ')' NEWLINE
@@ -74,8 +71,8 @@ function parse($input)
             $ir = parse_title($input, "title",      strlen("#"),    "title_html");
         elseif (starts_with($input, "!"))
             $ir = parse_figure($input);
-        elseif (starts_with($input, "["))
-            $ir = parse_link($input);
+        // elseif (starts_with($input, "["))
+        //     $ir = parse_link($input);
         else
             $ir = parse_paragraph($input);
 
@@ -126,27 +123,47 @@ function parse_figure($input)
     $url = $ir->data;
     $input = $ir->remaining;
 
+    // Remove trailing ")" (from reading to "\n" not ")")
     if (!ends_with($url, ")"))
         return unexpected_char_error("EOL", ")", -1, $lineno);      // TODO: charno
     $url = substr($url, 0, -1);
 
-    // // Get URL
-    // $ir = parse_text($input, strlen("("), ")");
-    // if ($ir == null)
-    //     return new ArticlerError("ParseError", "Figure expects ')' after url.", $lineno);
-    // $url = $ir->data;
-    // $input = $ir->remaining;
-
-    // if ($lineno != 16)
-    //     return new ArticlerError("FIGUURE", $caption . "<br>" . $url . "<br>" . $input . "snl: " . starts_with($input, "\n"), $lineno);
     return new IR(figure_html($caption, $url), $input);
 }
 
-function parse_link($input)
-{
-    // if (starts_with($input, "[]()"))
-    return new IR($input, "");
-}
+// function parse_link($input)
+// {
+//     // Empty link
+//     if (starts_with($input, "[]()\n"))
+//         return new IR(link_html("", ""), substr($input, strlen("![]()\n")));
+    
+//     if (!starts_with($input, "["))
+//         return unexpected_char_error($input[0], "[", 0, $lineno);
+    
+//     // Get TEXT
+//     $ir  = parse_text($input, strlen("["), "]");
+//     if ($ir == null)
+//         return new ArticlerError("ParseError", "Link expects ']' after text.", $lineno);
+//     $text = $ir->data;
+//     $input = $ir->remaining;
+
+//     if (!starts_with($input, "("))
+//         return unexpected_char_error($input[0], "(", -1, $lineno);  // TODO: charno
+
+//     // Get URL
+//     $ir = read_line($input, strlen("("), "link");
+//     if ($ir instanceof ArticlerError)
+//         return $ir;
+//     $url = $ir->data;
+//     $input = $ir->remaining;
+
+//     // Remove trailing ")" (from reading to "\n" not ")")
+//     if (!ends_with($url, ")"))
+//         return unexpected_char_error("EOL", ")", -1, $lineno);      // TODO: charno
+//     $url = substr($url, 0, -1);
+
+//     return new IR(link_html($text, $url), $input);
+// }
 
 function parse_paragraph($input)
 {
@@ -163,7 +180,7 @@ function parse_paragraph($input)
         array_push($lines, $ir->data);
         $input = $ir->remaining;
 
-        // Paragraph FOLLOWSET: {"\n", "#", "!", "["}
+        // Paragraph FOLLOWSET: {"\n", "#", "!"}
         if (starts_with($input, "\n"))
         {
             $lineno++;
@@ -173,8 +190,6 @@ function parse_paragraph($input)
         if (starts_with($input, "#"))
             break;
         if (starts_with($input, "!"))
-            break;
-        if (starts_with($input, "["))
             break;
     }
 

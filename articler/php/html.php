@@ -35,7 +35,7 @@ function figure_html($caption, $target)
 
 function link_html($text, $target)
 {
-    // return "<p>$paragraph</p>";
+    return "<a href=\"$target\">$text</a>";
 }
 
 ?>
