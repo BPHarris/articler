@@ -1,0 +1,2 @@
+/** articler common js functions */
+
