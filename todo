@@ -4,6 +4,17 @@ fullscreen flex
 
 https redirect
 
+auto table of contents
+    generate numeric id for each {title, subtitle, subsubtitle, figure}
+    
+    other id = title level - relative subtitle level - relative subsubtitle level - relative figure number
+        e.g.   t1-s1-s2-f1 is first figure in the 2 subsub of first sub of the first (usually only) title
+    
+    toc format
+        foreach id:
+            <a href="#id">indent + id number + title/subtitle/subsubtitle/figure</a>
+ability to ommit from toc
+
 Readme
 
 Set up articler as subdomain on website

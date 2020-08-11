@@ -11,6 +11,15 @@ function newline_expected_error($what, $lineno)
 }
 
 
+/**  */
+function unexpected_char_error($got, $expected, $charno, $lineno)
+{
+    return new ArticlerError(
+        "ParseError",
+        "Expected '$expected' but got '$got' at char $charno", $lineno - 1);
+}
+
+
 /** */
 class ArticlerError
 {

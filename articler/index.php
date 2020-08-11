@@ -27,10 +27,6 @@
     </head>
 
     <body>
-        <!-- <?php print (new ArticlerError("TestError", "test message")); ?>
-        <?php print (new IR("<p style=\"color:red\">data</p>", "remainder")); ?>
-        <?php print "eof?: " . at_eof((new IR("<p style=\"colour:red\">data</p>", "remainder"))); ?>
-        <?php print "eof?: " . at_eof((new IR("<p style=\"colour:red\">data</p>", ""))); ?> -->
         <?php
         $dummy_file = <<<EOT
         # Title Text &c. © Me
@@ -46,6 +42,14 @@
         ### subsubtitle
         paraaaaaaaaa
         
+        ## figures
+        ![]()
+        ![]('location')
+        ![caption]('location')
+        
+        ## links
+        empty
+
         EOT;
         ?>
         <?php print parse($dummy_file) ?>
