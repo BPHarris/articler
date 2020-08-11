@@ -10,6 +10,7 @@ require_once("php/articler.php");
  * 
  * Security
  *      clean input
+ *          https://johnmorrisonline.com/validate-sanitize-user-input-php-using-filter_input-filter_var/
  *      if ANY parse error, do not return result (only errror code)
  */
 

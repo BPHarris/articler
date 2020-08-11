@@ -1,3 +1,6 @@
+<!-- TEMP FOR DEBUG -->
+<?php require_once("php/articler.php"); ?>
+
 <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
@@ -24,7 +27,28 @@
     </head>
 
     <body>
-        <p>Hello, World</p>
+        <!-- <?php print (new ArticlerError("TestError", "test message")); ?>
+        <?php print (new IR("<p style=\"color:red\">data</p>", "remainder")); ?>
+        <?php print "eof?: " . at_eof((new IR("<p style=\"colour:red\">data</p>", "remainder"))); ?>
+        <?php print "eof?: " . at_eof((new IR("<p style=\"colour:red\">data</p>", ""))); ?> -->
+        <?php
+        $dummy_file = <<<EOT
+        # Title Text &c. © Me
+        para
+        
+        ## subtitle
+        a
+        long
+        para!
+        
+        another para
+        
+        ### subsubtitle
+        paraaaaaaaaa
+        
+        EOT;
+        ?>
+        <?php print parse($dummy_file) ?>
     </body>
 
 </html>
