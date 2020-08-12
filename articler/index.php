@@ -52,7 +52,7 @@
 
         EOT;
         ?>
-        <?php print parse($dummy_file) ?>
+        <?php print to_html($dummy_file) ?>
     </body>
 
 </html>

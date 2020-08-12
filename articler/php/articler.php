@@ -25,7 +25,7 @@ require_once("html.php");
  *                  |   '!' '[' CAPTION (',' 'width' '=' NUMBER '%') ']' '(' URL ')' NEWLINE
  * 
  *      LINE        ::= (ANY - {NEWLINE, '#', '[', '!'}) (ANY - {NEWLINE})* NEWLINE
- *      URL         ::= [a-z A-Z 0-9 \ / - _ . :]+
+ *      URL         ::= [a-z A-Z 0-9 \ / - _ . : % @ ? # =]+
  *      CAPTION     ::= (ANY - {NEWLINE, '(', ')', ',', ']'}) (ANY - {NEWLINE, ']'})*
  *      NUMBER      ::= [0-9]+
  *      NEWLINE     ::= '\n'
@@ -35,7 +35,19 @@ $lineno = 1;
 
 
 /** @return html articler html for the given raw text */
-function to_html($article) { return parse($article); }
+function to_html($article)
+{
+    $start_time = microtime(true);
+
+    // parse
+    $html = parse($article);
+
+    $time_taken = round(1000000.0 * (microtime(true) - $start_time));
+    print "<p>Time Elapsed: $time_taken ms</p><br>";
+
+    return $html;
+}
+
 
 /** */
 function parse($input)
