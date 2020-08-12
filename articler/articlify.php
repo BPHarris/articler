@@ -14,6 +14,24 @@ require_once("php/articler.php");
  *      if ANY parse error, do not return result (only errror code)
  */
 
-// print to_article(RAW TEXT FROM GET);
+if ($_SERVER["REQUEST_METHOD"] != "POST")
+    die();
+
+
+$article = "";
+if (isset($_POST['article']))
+    $article = $_POST['article'];
+elseif (isset($_POST['article_url']))
+    // TODO: Article from file
+    die();
+else
+    die();
+
+// TODO: Sanitise
+
+// Call Articler Core when finished:
+// https://www.tutorialspoint.com/How-to-call-Python-file-from-within-PHP
+
+print to_html($article);
 
 ?>

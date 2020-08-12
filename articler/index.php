@@ -12,6 +12,7 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap"> 
 
         <!-- Style Sheets -->
         <link rel="stylesheet" href="style/reset.css">
@@ -30,26 +31,33 @@
     </head>
 
     <body>
+
+        <?php
+
+// https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086
+
+        ?>
+
         <?php
         $dummy_file = <<<EOT
         # Title Text &c. © Me
         para
-        
+
         ## subtitle
         a
         long
         para!
-        
+
         another para
-        
+
         ### subsubtitle
         paraaaaaaaaa
-        
+
         ## figures
         ![]()
         ![]('location')
         ![caption]('location')
-        
+
         ## links
         []()
 

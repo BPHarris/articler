@@ -3,15 +3,21 @@
 :root
 {
     /** colour theme **/
+
+    /** font sizes **/
+    --normal:   1em;
+    --large:    2em;
+    --x-large:  3em;
 }
 
 
 html {}
 
-html, body {}
+/* html, body { width: 100%; height: 100%; } */
 
 body
 {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
 }
+

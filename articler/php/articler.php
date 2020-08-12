@@ -9,16 +9,21 @@ require_once("html.php");
 
 /**
  * 
- * TODO: b, i, u, a inside para
+ * // TODO: b, i, u, a inside LINE
+ * // TODO: h3-6
  * 
  * Articler Language Grammar (*.articler)
  *      articler    ::= (title | h1 | h2 | p | figure | NEWLINE)*
  *
- *      title       ::= '#'   LINE
+ *      title       ::= '#'         line
+ *      h1          ::= '##'        line
+ *      h2          ::= '###'       line
+ *      h3          ::= '####'      line    // NOTE: Not implemented
+ *      h4          ::= '#####'     line    // NOTE: Not implemented
+ *      h5          ::= '######'    line    // NOTE: Not implemented
+ *      h6          ::= '#######'   line    // NOTE: Not implemented
  * 
- *      h1          ::= '##'  LINE
- *      h1          ::= '###' LINE
- *      p           ::= LINE+ NEWLINE
+ *      p           ::= line+ NEWLINE
  * 
  *      figure      ::= '!' '[' ']' '('        ')' NEWLINE
  *                  |   '!' '[' ']' '('  URL   ')' NEWLINE
