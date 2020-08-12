@@ -1,11 +1,11 @@
 /** articler api */
 
-import ArticlerError from "error";
-import parse from "parser";
+import ArticlerError from "./articler/error.js";
+import parse_article from "./articler/parser.js";
 
 // import * as test from "test";
 
-import Article from "ast.article";
+import Article from "./articler/ast/article.js";
 
 /**
  * Articler Article Grammar
@@ -46,10 +46,10 @@ import Article from "ast.article";
 
 function to_html(article)
 {
-    return;
+    return "ToHtmlFunction";
 }
 
 function parse(input)
 {
-    return;
+    return "ParseFunction";
 }

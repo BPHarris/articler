@@ -24,6 +24,9 @@
         <script src="js/jquery/jquery-3.5.1.min.js"></script>
         <script src="js/jquery/ui/jquery-ui.min.js"></script>
         <script src="js/common.js"></script>
+
+        <!-- JavaScript Test -->
+        <script type="module" src="core/articler.js"></script>
     </head>
 
     <body>
