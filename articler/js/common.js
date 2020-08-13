@@ -11,7 +11,16 @@ var text = `
 @thumbnailtext = This is the text to go on the thumbnail
 
 <!-- allows html style comments (only after metadata) -->
-the rest of the article
+<!-- Cheats below -->
+<h1>Heading</h1>
+<p>Sample Text<p>
+
+<h1>Another Heading</h1>
+<h1>With a subheading!</h1>
+<p>Lorem Ipsum<p>
+
+<h1>A Heading Again</h1>
+<p>Where are we heading though?<p>
 `;
 
 var code_mirror;

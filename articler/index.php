@@ -42,18 +42,29 @@
 
             // HACK: Allow refresh_viewer to be executed anywhere
             document.refresh_viewer = function () {
-                $(".viewer-body").html(to_html_debug(code_mirror.getValue()));
+                // Fade out old HTML
+                $(".articler-article").fadeOut();
+                
+                // Load new HTML and fade in
+                // NOTE: delay by fadeout time * $(...).length
+                // This will delay the fade in animation until the fade out is
+                // done, but only if there was a fade out
+                // $(...).length = 0 when no fade out, = 1 otherwise
+                setTimeout(() => {
+                    $(".viewer-body").html(
+                        to_html_debug(code_mirror.getValue()));
+                    $(".articler-article").hide();
+                    $(".articler-article").fadeIn();
+                }, 500 * $(".articler-article").length);
             };
 
-            $("#refresh-viewer").get(0).onclick = function () { document.refresh_viewer(); }
+            $("#refresh-viewer").get(0).onclick = function () {
+                document.refresh_viewer();
+            }
         </script>
     </head>
 
     <body>
-<?
-//https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086
-?>
-
 
         <div class="wrapper">
             <header class="page-header">
