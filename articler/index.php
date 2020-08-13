@@ -79,12 +79,12 @@
                                 "fas fa-sync-alt"
                             );
                             echo fa_icon_button(
-                                "",
-                                "fas fa-info-circle"     // fas for empty
+                                "toggle_show_debug()",
+                                "fas fa-info-circle"     // far for empty
                             );
                             echo fa_icon_button(
-                                "",
-                                "far fa-question-circle" // fas for filled
+                                "toggle_show_metadata()",
+                                "fas fa-question-circle" // far for empty
                             );
                             
                             // left

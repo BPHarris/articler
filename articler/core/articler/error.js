@@ -26,7 +26,7 @@ class ArticlerError
 `<div class="articler-article">
     <div class="articler-debug"></div>
     <div class="articler-error">
-        <div class="type">${this.type}:${this.lineno}</div>
+        <div class="type">${this.type}</div>
         <div class="message">${this.message}</div>
     </div>
 </div>`;

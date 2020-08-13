@@ -16,6 +16,11 @@ var text = `
 the rest of the article
 `;
 
+
+var show_debug = false;
+var show_metadata = false;
+
+
 $(function () {
     $(".editor-body textarea").html(text);
 
@@ -45,3 +50,18 @@ $(function () {
 
     $(".viewer-body").html(output);
 });
+
+
+/**  */
+function toggle_show_debug() {
+    if (show_debug = !show_debug)
+        return $(".articler-debug").slideDown();
+    return $(".articler-debug").slideUp();
+}
+
+/**  */
+function toggle_show_metadata() {
+    if (show_metadata = !show_metadata)
+        return $(".articler-metadata").slideDown();
+    return $(".articler-metadata").slideUp();
+}
