@@ -23,6 +23,7 @@ var show_metadata = false;
 $(function () {
     $(".editor-body textarea").html(text);
 
+    $(".editor-body").fadeIn();
     code_mirror = CodeMirror.fromTextArea(
         $(".editor-body textarea").get(0),
         {
