@@ -14,9 +14,10 @@ var text = `
 <!-- Cheats below -->
 <h1>Heading</h1>
 <p>Sample Text<p>
+<p>Even more sample text<p>
 
 <h1>Another Heading</h1>
-<h1>With a subheading!</h1>
+<h2>With a subheading!</h2>
 <p>Lorem Ipsum<p>
 
 <h1>A Heading Again</h1>

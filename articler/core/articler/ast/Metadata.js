@@ -70,7 +70,6 @@ export class Metadata extends AstNode
         {
             tag_html += i + `<div class="metadata">\n`;
             tag_html += i + `    <div class="tag">${pair.tag}</div>\n`;
-            tag_html += i + `    <div class="sep">:</div>\n`;
             tag_html += i + `    <div class="data">${pair.data}</div>\n`;
             tag_html += i + `</div>\n`;
         }

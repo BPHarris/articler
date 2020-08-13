@@ -55,6 +55,15 @@
                         to_html_debug(code_mirror.getValue()));
                     $(".articler-article").hide();
                     $(".articler-article").fadeIn();
+
+                    if (show_debug) {
+                        $(".articler-debug").hide();
+                        $(".articler-debug").slideDown();
+                    }
+                    if (show_metadata) {
+                        $(".articler-metadata").hide();
+                        $(".articler-metadata").slideDown();
+                    }
                 }, 500 * $(".articler-article").length);
             };
 
