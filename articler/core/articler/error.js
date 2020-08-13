@@ -1,25 +1,32 @@
 /** articler error class and util functions */
 
+export {
+    ArticlerError,
+    UnexpectedTokenError,
+    UnrecognisedMetadataTagError,
+};
+
+
 /** */
-export class ArticlerError
+class ArticlerError
 {
-    constructor(type, message, lineno, charno)
+    constructor(type, message, lineno)
     {
         this.type = type;
         this.message = message;
         this.lineno = lineno;
-        this.charno = charno;
     }
 
     to_html()
     {
-        var html = `
-        <div class="articler-error">
-            <div class="type">${this.type}</div>
-            <div class="position">${this.lineno}:${this.charno}</div>
-            <div class="message">${this.message}</div>
-        </div>
-        `;
+        var html =
+`<div class="articler-article">
+    <div class="articler-debug"></div>
+    <div class="articler-error">
+        <div class="type">${this.type}:${this.lineno}</div>
+        <div class="message">${this.message}</div>
+    </div>
+</div>`;
         return html;
     }
 
@@ -28,3 +35,24 @@ export class ArticlerError
         return `${this.type}: ${this.message}`;
     }
 }
+
+
+/** */
+class UnrecognisedMetadataTagError extends ArticlerError
+{
+    constructor(allowed_tags, lineno)
+    {
+        super("UnrecognisedMetadataTagError", `expected one of ${allowed_tags}`, lineno);
+    }
+}
+
+
+/** */
+class UnexpectedTokenError extends ArticlerError
+{
+    constructor(expected, got, lineno)
+    {
+        super("UnexpectedTokenError", `expected ${expected} got ${got}`, lineno);
+    }
+}
+

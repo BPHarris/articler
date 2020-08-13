@@ -17,7 +17,9 @@
         <!-- Style Sheets -->
         <link rel="stylesheet" href="style/reset.css">
         <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="style/articler.css">
+
+        <!-- Articler Theme -->
+        <link rel="stylesheet" href="style/themes/articler.css">
 
         <!-- TODO: Favicons -->
 
@@ -25,9 +27,6 @@
         <script src="js/jquery/jquery-3.5.1.min.js"></script>
         <script src="js/jquery/ui/jquery-ui.min.js"></script>
         <script src="js/common.js"></script>
-
-        <!-- JavaScript Test -->
-        <script type="module" src="core/articler.js"></script>
     </head>
 
     <body>
@@ -42,28 +41,39 @@
         $dummy_file = <<<EOT
         # Title Text &c. © Me
         para
-
+        
         ## subtitle
         a
         long
         para!
-
+        
         another para
-
+        
         ### subsubtitle
         paraaaaaaaaa
-
+        
         ## figures
         ![]()
         ![]('location')
         ![caption]('location')
-
+        
         ## links
         []()
 
         EOT;
         ?>
         <?php print to_html($dummy_file) ?>
+
+        <!-- JavaScript Test -->
+        <script type="module">
+            import {to_html_debug} from "./core/articler.js";
+
+            // console.log(to_html_debug(""));
+            console.log(to_html_debug(
+                "@title=Title of Article\n@author=Me!\n@date=Today\nthe rest"
+            ));
+        </script>
+
     </body>
 
 </html>

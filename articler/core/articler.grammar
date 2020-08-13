@@ -1,0 +1,39 @@
+Articler Article Grammar
+
+article         ::= metadata article_body
+
+metadata        ::= metadata_line*
+metadata_line   ::= '@' metadata_tag '=' line
+metadata_tag    ::= 'title'
+                |   'author'
+                |   'date'
+                |   'note'
+                |   // TODO: What else
+
+article_body    ::= (statement | NEWLINE)*
+
+heading         ::= '#'      line
+                |   '##'     line
+                |   '###'    line
+                |   '####'   line
+                |   '#####'  line
+                |   '######' line
+
+paragraph       ::= line
+                |   line+ NEWLINE
+
+figure          ::= '!''[' CAPTION (',' figure_data)* ']''('URL')'
+figure_data     ::= 'width'     '=' INT '%'
+                |   'rounding'  '=' INT
+
+// TODO: Full text grammar (allow i, b, u, a)
+text            ::= ASCII - {NEWLINE}   // NOTE: temporary
+line            ::= text NEWLINE
+
+// TODO: review this
+html            ::= '<' 'html' '>' ASCII* '<' '/' 'html' '>'
+
+INT             ::= [0-9]+
+URL             ::= [a-z A-Z 0-9 \ / - _ . : % @ ? # =]+
+CAPTION         ::= [a-z A-Z 0-9 \ / - _ . : % @ ? # = ( )]+
+ASCII           ::= printable chars in extended ascii

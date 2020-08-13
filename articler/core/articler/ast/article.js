@@ -1,14 +1,29 @@
 /** article ast node */
 
-class Article extends AstNode
+import { AstNode } from "./AstNode.js";
+
+
+/** */
+export class Article extends AstNode
 {
-    constructor()
+    constructor(metadata, article_body)
     {
-        return;
+        super();
+
+        this.metadata = metadata;               // type: Metadata
+        this.article_body = article_body;       // type: ArticleBody
     }
 
     to_html()
     {
-        return "<p>Not Implemented</p>";
+        var html =
+`<div class="articler-article">
+    <div class="articler-debug"></div>
+    ${this.metadata.to_html()}
+    <div class="articler-title">${this.metadata.get("title")}</div>
+    ${this.article_body.to_html()}
+</div>`;
+
+        return html;
     }
 }
