@@ -1,5 +1,4 @@
-<!-- TEMP FOR DEBUG -->
-<?php require_once("php/articler.php"); ?>
+<?php require_once("php/lib.php"); ?>
 
 <!DOCTYPE html>
     <head>
@@ -10,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/1bf9e36e13.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap"> 
 
@@ -30,51 +29,15 @@
     </head>
 
     <body>
-
-        <?php
-
-// https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086
-
-        ?>
-
-        <?php
-        $dummy_file = <<<EOT
-        # Title Text &c. © Me
-        para
-        
-        ## subtitle
-        a
-        long
-        para!
-        
-        another para
-        
-        ### subsubtitle
-        paraaaaaaaaa
-        
-        ## figures
-        ![]()
-        ![]('location')
-        ![caption]('location')
-        
-        ## links
-        []()
-
-        EOT;
-        ?>
-        <?php print to_html($dummy_file) ?>
-
-        <!-- JavaScript Test -->
-        <script type="module">
-            import {to_html_debug} from "./core/articler.js";
-
-            var text =
-`
+<?
+//https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086
+?>
+<script>
+var text = `
 @id = my-article
 @note = the id muse be a valid html id
 @title = Title of Article
 @author = Me!
-@id = 2
 @date = Today
 @note = does not insert today's date :(
 @thumbnail = https://example.com/image.png
@@ -83,10 +46,57 @@
 <!-- allows html style comments (only after metadata) -->
 the rest of the article
 `;
+var output;
+</script>
 
-            // console.log(to_html_debug(""));
-            console.log(to_html_debug(text));
-        </script>
+<script type="module">
+    import {to_html_debug} from "./core/articler.js";
+
+    output = to_html_debug(text);
+    console.log(output);
+</script>
+
+
+        <div class="wrapper">
+            <header class="page-header">
+                <div class="centred-banner">
+                    <div class="centre">A R T I C L E R</div>
+                </div>
+            </header>
+            
+            <main class="page-main">
+                <div class="editor-viewer-split">
+                    <div class="editor">
+                        EDITOR
+                    </div>
+                    <div class="viewer">
+                        <script>
+                            $(function () {$(".viewer").html(output);});
+                        </script>
+                    </div>
+                </div>
+            </main>
+            
+            <footer class="page-footer">
+                <div class="centred-banner">
+                    <div class="allow-middle-centre">
+                        <div class="middle-centre">
+                            &copy; Brandon Harris 2020
+                        </div>
+                    </div>
+                    <div class="centre">
+                        <?php
+                            echo fa_icon_button(
+                                "https://bpharris.uk",
+                                "fas fa-2x fa-user");
+                            echo fa_icon_button(
+                                "https://github.com/bpharris/articler/",
+                                "fab fa-2x fa-github-square");
+                        ?>
+                    </div>
+                </div>
+            </footer>
+        </div>
 
     </body>
 

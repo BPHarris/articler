@@ -2,6 +2,7 @@
 
 :root {
     /** colour theme **/
+    /* https://www.materialui.co/flatuicolors */
     --turquoise: #1abc9c;
     --greensea: #16a085;
 
@@ -32,7 +33,7 @@
     --concrete: #95a5a6;
     --asbestos: #7f8c8d;
 
-    
+
     /** font sizes **/
     --normal:   1em;
     --large:    2em;
@@ -42,11 +43,92 @@
 
 html {}
 
-/* html, body { width: 100%; height: 100%; } */
-
-body
-{
+body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+}
+
+
+.left   { text-align: left;   }
+.right  { text-align: right;  }
+.centre { text-align: center; }
+
+.allow-middle-centre { position: relative; }
+.middle-centre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/** fullscreen wrapper **/
+.wrapper {
+    /* fullsreen */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.wrapper > * {
+    padding: 1em;
+}
+
+/** centred banner **/
+header .centred-banner { font-weight: bold; }
+.centred-banner {
+    font-size: large;
+
+    /* centre */
+    display: flex;
+}
+
+.centred-banner > * {
+    padding-left: 1em;
+    padding-right: 1em;
+
+    /* full width */
+    flex-grow: 1;
+}
+@media screen and (max-width: 600px)
+{
+    .centred-banner > * {
+        font-size: small;
+    }
+}
+
+
+/** header **/
+header {
+    /* debug */
+    background-color: var(--amethyst);
+}
+
+/** footer **/
+footer {
+    /* debug */
+    background-color: var(--carrot);
+}
+
+/** Font Awesome icon button **/
+.fa-icon-button         { color: var(--asbestos); padding-left: 4em; }
+.fa-icon-button:hover   { color: var(--pomegranate); }
+.fa-icon-button:visited { text-decoration: none; }
+
+/** page main **/
+.page-main {
+    /* debug */
+    background-color: var(--turquoise);
+
+    /* fullscreen */
+    flex-grow: 1;
+}
+
+
+/** editor viewer split **/
+.editor-viewer-split {
+    display: flex;
+}
+.editor-viewer-split > * {
+    flex: 50%;
 }
 
