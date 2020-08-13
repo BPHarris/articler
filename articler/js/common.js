@@ -27,7 +27,15 @@ $(function () {
     code_mirror = CodeMirror.fromTextArea(
         $(".editor-body textarea").get(0),
         {
-            "theme": "material-darker",
+            // Theme                : Rating (/10)
+            // ayu-dark             : 4
+            // ayu-mirage           : 4
+            // material-darker      : 7
+            // material-ocean       : 2
+            // material-palenight   : 5
+            // material             : 9
+            // nord                 : 9
+            "theme": "nord",
 
             // indents
             "indentUnit": 4,

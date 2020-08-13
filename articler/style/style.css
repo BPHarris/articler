@@ -1,37 +1,27 @@
 /** articler style sheet -- styling for editor */
 
 :root {
-    /** colour theme **/
-    /* https://www.materialui.co/flatuicolors */
-    --turquoise: #1abc9c;
-    --greensea: #16a085;
-
-    --emerland: #2ecc71;
-    --nephritis: #27ae60;
-
-    --peterriver: #3498db;
-    --belizehole: #2980b9;
-
-    --amethyst: #9b59b6;
-    --wisteria: #8e44ad;
-
-    --wetasphalt: #34495e;
-    --midnightblue: #2c3e50;
-
-    --sunflower: #f1c40f;
-    --orange: #f39c12;
-
-    --carrot: #e67e22;
-    --pumpkin: #d35400;
-
-    --alizarin: #e74c3c;
-    --pomegranate: #c0392b;
-
-    --clouds: #ecf0f1;
-    --silver: #bdc3c7;
-
-    --concrete: #95a5a6;
-    --asbestos: #7f8c8d;
+    /** Nord Colours **/
+    /* Polar Nights */
+    --nord0:  #2e3440;
+    --nord1:  #3b4252;
+    --nord2:  #434c5e;
+    --nord3:  #4c566a;
+    /* Snow Storm */
+    --nord4:  #d8dee9;
+    --nord5:  #e5e9f0;
+    --nord6:  #eceff4;
+    /* Frost */
+    --nord7:  #8fbcbb;
+    --nord8:  #88c0d0;
+    --nord9:  #81a1c1;
+    --nord10: #5e81ac;
+    /* Aurora */
+    --nord11: #bf616a;
+    --nord12: #d08770;
+    --nord13: #ebcb8b;
+    --nord14: #a3be8c;
+    --nord15: #b48ead;
 
 
     /** font sizes **/
@@ -46,6 +36,8 @@ html {}
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+
+    color: var(--nord4);
 }
 
 
@@ -96,10 +88,10 @@ header .centred-banner { font-weight: bold; }
 
 /** header **/
 header {
-    background-color: var(--clouds);
+    background-color: var(--nord2);
 
     border-bottom: 2px;
-    border-color: var(--midnightblue);
+    border-color: var(--nord10);
     border-style: solid;
 
     padding: 1em;
@@ -107,27 +99,29 @@ header {
 
 /** footer **/
 footer {
-    background-color: var(--clouds);
+    background-color: var(--nord3);
 
     border-top: 2px;
-    border-color: var(--midnightblue);
+    border-color: var(--nord10);
     border-style: solid;
 
     padding: 1em;
+
+    text-align: center;
 }
 
 /** Font Awesome icon button **/
 .fa-icon-button {
-    color: var(--pomegranate);
+    color: var(--nord0);
     padding-left: 1em;
     padding-right: 1em;
 }
-.fa-icon-button:hover   { color: var(--nephritis); }
+.fa-icon-button:hover   { color: var(--nord11); cursor: pointer; }
 .fa-icon-button:visited { text-decoration: none; }
 
 /** page main **/
 .page-main {
-    background-color: var(--clouds);
+    background-color: black;    /* for debug */
 
     /* fullscreen */
     flex-grow: 1;
@@ -149,15 +143,20 @@ footer {
     flex-direction: column;
 
     /** debug **/
-    background-color: aqua;
+    background-color: var(--nord0);
 }
 
-.control-bar { background-color: brown; }
-.editor-body { background-color: orange; } 
-.viewer-body { background-color: chartreuse; }
+.editor-body { background-color: var(--nord0); } 
+.viewer-body { background-color: var(--nord1); }
 
 .control-bar {
     padding: 1em;
+
+    background-color: var(--nord14);
+
+    border-bottom: 2px;
+    border-color: var(--nord10);
+    border-style: solid;
 }
 
 .viewer-body {
@@ -170,8 +169,12 @@ footer {
 
     font-family: 'Inconsolata', monospace;
 
-    border: none;
+    border: 0;
     margin: 0;
+
+    border-right: 2px;
+    border-color: var(--nord10);
+    border-style: solid;
 }
 
 /** Stop empty editor from flashing on load **/

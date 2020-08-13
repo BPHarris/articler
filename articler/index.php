@@ -32,7 +32,8 @@
         <link rel="stylesheet" href="js/codemirror/lib/codemirror.css">
         <script src="js/codemirror/mode/javascript/javascript.js"></script>
 
-        <!-- Code Mirror Theme -->
+        <!-- Code Mirror Themes -->
+        <link rel="stylesheet" href="js/codemirror/theme/nord.css">
         <link rel="stylesheet" href="js/codemirror/theme/material-darker.css">
 
         <!-- Interface to articler module -->
