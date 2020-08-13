@@ -1,17 +1,45 @@
 /** css for articler article contents */
 
-.articler {}
+.articler-article {}
+
+/** debug and metadata **/
+.articler-debug, .articler-metadata {
+    border-radius: 4px;
+    border: 2px solid black;
+
+    padding: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+.articler-debug > *, .articler-metadata > * {
+    padding-bottom: 0.5em;
+}
+.articler-metadata .metadata > * {
+    display: inline;
+}
+
+.articler-debug, .articler-metadata { display: none;}
+
+.articler-debug {
+    border-color: red;
+}
+
+.articler-metadata {
+    border-color: blue;
+}
 
 .articler-title {}
 
-.articler i {}
-.articler b {}
-.articler u {}
+.articler-article h1 {}
+.articler-article h2 {}
+.articler-article h3 {}
+.articler-article h4 {}
+.articler-article h5 {}
+.articler-article h6 {}
 
-.articler h1 {}
-.articler h2 {}
-.articler p {}
+.articler-article p {}
 
-.articler figure {}
-.articler figure img {}
-.articler figure figcaption {}
+.articler-article figure {}
+.articler-article figure img {}
+.articler-article figure figcaption {}

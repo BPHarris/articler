@@ -64,9 +64,16 @@ export class Metadata extends AstNode
     /** */
     to_html()
     {
+        var i = "        ";
         var tag_html = "";
         for (const pair of this.metadata)
-            tag_html += `        <div class="${pair.tag}">${pair.data}</div>\n`;
+        {
+            tag_html += i + `<div class="metadata">\n`;
+            tag_html += i + `    <div class="tag">${pair.tag}</div>\n`;
+            tag_html += i + `    <div class="sep">:</div>\n`;
+            tag_html += i + `    <div class="data">${pair.data}</div>\n`;
+            tag_html += i + `</div>\n`;
+        }
         return `<div class="articler-metadata">\n${tag_html}    </div>`;
     }
 }

@@ -106,7 +106,7 @@ function to_html_debug(article)
     const empty_debug_html = `<div class="articler-debug"></div>`;
     var debug_html =
     `<div class="articler-debug">
-        <p>Time Taken: ${end_time} ms</p>
+        <div>Time Taken: ${end_time} ms</div>
     </div>`;
 
     return article_html.replace(empty_debug_html, debug_html);

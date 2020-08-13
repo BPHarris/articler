@@ -26,32 +26,23 @@
         <script src="js/jquery/jquery-3.5.1.min.js"></script>
         <script src="js/jquery/ui/jquery-ui.min.js"></script>
         <script src="js/common.js"></script>
+
+        <!-- Code Mirror -->
+        <script src="js/codemirror/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="js/codemirror/lib/codemirror.css">
+        <script src="js/codemirror/mode/javascript/javascript.js"></script>
+
+        <!-- Code Mirror Theme -->
+        <link rel="stylesheet" href="js/codemirror/theme/material-darker.css">
     </head>
 
     <body>
 <?
 //https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086
 ?>
-<script>
-var text = `
-@id = my-article
-@note = the id muse be a valid html id
-@title = Title of Article
-@author = Me!
-@date = Today
-@note = does not insert today's date :(
-@thumbnail = https://example.com/image.png
-@thumbnailtext = This is the text to go on the thumbnail
-
-<!-- allows html style comments (only after metadata) -->
-the rest of the article
-`;
-var output;
-</script>
 
 <script type="module">
     import {to_html_debug} from "./core/articler.js";
-
     output = to_html_debug(text);
     console.log(output);
 </script>
@@ -67,34 +58,49 @@ var output;
             <main class="page-main">
                 <div class="editor-viewer-split">
                     <div class="editor">
-                        EDITOR
+                        <div class="control-bar">
+                            <?php
+                            echo fa_icon_button(
+                                "",
+                                "fas fa-download"
+                            );
+                            ?>
+                        </div>
+                        <div class="editor-body">
+                            <textarea></textarea>
+                        </div>
                     </div>
                     <div class="viewer">
-                        <script>
-                            $(function () {$(".viewer").html(output);});
-                        </script>
+                        <div class="control-bar">
+                            <?php
+                            // right
+                            echo fa_icon_button(
+                                "",
+                                "fas fa-sync-alt"
+                            );
+                            echo fa_icon_button(
+                                "",
+                                "fas fa-info-circle"     // fas for empty
+                            );
+                            echo fa_icon_button(
+                                "",
+                                "far fa-question-circle" // fas for filled
+                            );
+                            
+                            // left
+                            echo fa_icon_button(
+                                "",
+                                "fas fa-download"
+                            );
+                            ?>
+                        </div>
+                        <div class="viewer-body"></div>
                     </div>
                 </div>
             </main>
             
             <footer class="page-footer">
-                <div class="centred-banner">
-                    <div class="allow-middle-centre">
-                        <div class="middle-centre">
-                            &copy; Brandon Harris 2020
-                        </div>
-                    </div>
-                    <div class="centre">
-                        <?php
-                            echo fa_icon_button(
-                                "https://bpharris.uk",
-                                "fas fa-2x fa-user");
-                            echo fa_icon_button(
-                                "https://github.com/bpharris/articler/",
-                                "fab fa-2x fa-github-square");
-                        ?>
-                    </div>
-                </div>
+                &copy; Brandon Harris 2020
             </footer>
         </div>
 
