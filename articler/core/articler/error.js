@@ -2,8 +2,11 @@
 
 export {
     ArticlerError,
-    UnexpectedTokenError,
     UnrecognisedMetadataTagError,
+    IllegalMetadataError,
+    MetadataRepetitionError,
+    UnexpectedTokenError,
+    NewlineExpectedError,
 };
 
 
@@ -48,11 +51,40 @@ class UnrecognisedMetadataTagError extends ArticlerError
 
 
 /** */
+class IllegalMetadataError extends ArticlerError
+{
+    constructor(tag, lineno)
+    {
+        super("IllegalMetadataError", `illegal data for tag "${tag}"`, lineno);
+    }
+}
+
+/** */
+class MetadataRepetitionError extends ArticlerError
+{
+    constructor(tag, lineno)
+    {
+        super("MetadataRepetitionError", `metadata for "${tag}" is already set`, lineno);
+    }
+}
+
+
+/** */
 class UnexpectedTokenError extends ArticlerError
 {
     constructor(expected, got, lineno)
     {
-        super("UnexpectedTokenError", `expected ${expected} got ${got}`, lineno);
+        super("UnexpectedTokenError", `expected "${expected}" got "${got}"`, lineno);
+    }
+}
+
+
+/** */
+class NewlineExpectedError extends ArticlerError
+{
+    constructor(after_what, lineno)
+    {
+        super("NewlineExpectedError", `newline expected after ${after_what}`, lineno);
     }
 }
 

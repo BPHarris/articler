@@ -10,16 +10,13 @@ import { ArticleBody } from "./ast/ArticleBody.js";
 /* Errors */
 import {
     ArticlerError,
-    UnexpectedTokenError,
     UnrecognisedMetadataTagError,
+    UnexpectedTokenError,
+    NewlineExpectedError,
 } from "./error.js";
 
 
 export default parse_article;
-
-
-/** */
-var lineno = 0;
 
 
 /**
@@ -31,6 +28,9 @@ function parse_article(article)
 {
     var metadata, article_body;
 
+    // NOTE: does this fix line endings?
+    article = article.replace(/(?:\r\n|\r|\n)/g, "\n");
+    
     [metadata, article] = parse_metadata(article);
     if (metadata instanceof ArticlerError)
         return metadata
@@ -45,13 +45,16 @@ function parse_article(article)
 
 
 /**
- * metadata ::= metadata_line+
+ * metadata ::= (metadata_line | NEWLINE)*
  * 
- * @return [Metadata | ArticlerError, article'] article metadata
+ * @return [Metadata | ArticlerError, article''] article metadata
  */
 function parse_metadata(article)
 {
     var metadata_line, metadata_lines = [];
+
+    article = article.skip_whitespace();
+    
     while (article.starts_with("@"))
     {
         [metadata_line, article] = parse_metadata_line(article);
@@ -60,34 +63,37 @@ function parse_metadata(article)
             return [metadata_line, article];
 
         metadata_lines.push(metadata_line);
+        article = article.skip_whitespace();
     }
-    
-    return [new Metadata(metadata_lines), article];
+
+    var metadata = new Metadata(metadata_lines), error;
+    if ((error = metadata.is_legal()) instanceof ArticlerError)
+        return [error, article];
+    return [metadata, article];
 }
 
 
 /**
  * metadata_line ::= '@' metadata_tag '=' line
  * 
- * @return [Array[metadata_tag, line] | ArticlerError, article']
+ * @return [Array[metadata_tag, line] | ArticlerError, article'']
  */
 function parse_metadata_line(article)
 {
     var metadata_tag, line;
-    const allowed_metadata_tags = ["title", "author", "date", "note"];
 
     article = article.consume("@");
     
     article = article.skip_whitespace(" ");
     
-    [metadata_tag, article] = article.read_option(allowed_metadata_tags);
+    [metadata_tag, article] = article.read_option(Metadata.allowed_metadata_tags);
     if (!metadata_tag)
-        return [new UnrecognisedMetadataTagError(allowed_metadata_tags, lineno), article];
+        return [new UnrecognisedMetadataTagError(Metadata.allowed_metadata_tags), article];
     
     article = article.skip_whitespace(" ");
     
     if (!article.starts_with("="))
-        return [new UnexpectedTokenError("=", article[0], lineno), article];
+        return [new UnexpectedTokenError("=", article[0]), article];
     article = article.consume("=");
 
     article = article.skip_whitespace(" ");

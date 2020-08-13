@@ -17,7 +17,7 @@ export class Article extends AstNode
     to_html()
     {
         var html =
-`<div class="articler-article">
+`<div class="articler-article" id="${this.metadata.get("id")}">
     <div class="articler-debug"></div>
     ${this.metadata.to_html()}
     <div class="articler-title">${this.metadata.get("title")}</div>

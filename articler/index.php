@@ -68,10 +68,24 @@
         <script type="module">
             import {to_html_debug} from "./core/articler.js";
 
+            var text =
+`
+@id = my-article
+@note = the id muse be a valid html id
+@title = Title of Article
+@author = Me!
+@id = 2
+@date = Today
+@note = does not insert today's date :(
+@thumbnail = https://example.com/image.png
+@thumbnailtext = This is the text to go on the thumbnail
+
+<!-- allows html style comments (only after metadata) -->
+the rest of the article
+`;
+
             // console.log(to_html_debug(""));
-            console.log(to_html_debug(
-                "@title=Title of Article\n@author=Me!\n@date=Today\nthe rest"
-            ));
+            console.log(to_html_debug(text));
         </script>
 
     </body>
