@@ -173,5 +173,9 @@ footer {
     border: none;
     margin: 0;
 }
+
+/** Stop empty editor from flashing on load **/
+/* .editor-body textarea { display: none; } */
+
 .editor-body .CodeMirror { width: 100%; height: 100%; }
 

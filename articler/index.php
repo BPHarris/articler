@@ -39,9 +39,12 @@
         <script type="module">
             import {to_html_debug} from "./core/articler.js";
 
-            $("#refresh-viewer").get(0).onclick = function () {
+            // HACK: Allow refresh_viewer to be executed anywhere
+            document.refresh_viewer = function () {
                 $(".viewer-body").html(to_html_debug(code_mirror.getValue()));
             };
+
+            $("#refresh-viewer").get(0).onclick = function () { document.refresh_viewer(); }
         </script>
     </head>
 

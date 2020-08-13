@@ -46,6 +46,8 @@ $(function () {
             "autocapitalize": true,
         }
     );
+
+    document.refresh_viewer();
 });
 
 
@@ -63,9 +65,3 @@ function toggle_show_metadata() {
         return $(".articler-metadata").slideDown();
     return $(".articler-metadata").slideUp();
 }
-
-
-// /** */
-// function update_viewer() {
-//     $(".viewer-body").html(to_html_debug(code_mirror.getValue()));
-// }
