@@ -34,18 +34,21 @@
 
         <!-- Code Mirror Theme -->
         <link rel="stylesheet" href="js/codemirror/theme/material-darker.css">
+
+        <!-- Interface to articler module -->
+        <script type="module">
+            import {to_html_debug} from "./core/articler.js";
+
+            $("#refresh-viewer").get(0).onclick = function () {
+                $(".viewer-body").html(to_html_debug(code_mirror.getValue()));
+            };
+        </script>
     </head>
 
     <body>
 <?
 //https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086
 ?>
-
-<script type="module">
-    import {to_html_debug} from "./core/articler.js";
-    output = to_html_debug(text);
-    console.log(output);
-</script>
 
 
         <div class="wrapper">
@@ -76,7 +79,8 @@
                             // right
                             echo fa_icon_button(
                                 "",
-                                "fas fa-sync-alt"
+                                "fas fa-sync-alt",
+                                "refresh-viewer"
                             );
                             echo fa_icon_button(
                                 "toggle_show_debug()",

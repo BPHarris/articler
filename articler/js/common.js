@@ -1,7 +1,5 @@
 /** articler common js functions */
 
-var output;     // NOTE: Temp
-
 var text = `
 @id = my-article
 @note = the id muse be a valid html id
@@ -16,6 +14,7 @@ var text = `
 the rest of the article
 `;
 
+var code_mirror;
 
 var show_debug = false;
 var show_metadata = false;
@@ -24,7 +23,7 @@ var show_metadata = false;
 $(function () {
     $(".editor-body textarea").html(text);
 
-    var code_mirror = CodeMirror.fromTextArea(
+    code_mirror = CodeMirror.fromTextArea(
         $(".editor-body textarea").get(0),
         {
             "theme": "material-darker",
@@ -47,8 +46,6 @@ $(function () {
             "autocapitalize": true,
         }
     );
-
-    $(".viewer-body").html(output);
 });
 
 
@@ -59,9 +56,16 @@ function toggle_show_debug() {
     return $(".articler-debug").slideUp();
 }
 
+
 /**  */
 function toggle_show_metadata() {
     if (show_metadata = !show_metadata)
         return $(".articler-metadata").slideDown();
     return $(".articler-metadata").slideUp();
 }
+
+
+// /** */
+// function update_viewer() {
+//     $(".viewer-body").html(to_html_debug(code_mirror.getValue()));
+// }
