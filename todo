@@ -1,33 +1,39 @@
-allow numbers in id (but not FIRST(id))
+[TODO : DOING]
+
+Https redirect
+Allow numbers in id (but not FIRST(id))
+
+Parse headings, paragraphs, figures
+Require same number of fa-icon and fa-icontargets in metadata
+
+Move articler/core/ to articler-core repository and submodule
+    Move style/themes/ to articler/core/themes/
+Add articler to projects/websites on website
+
+Host on articler.bpharris.uk
+Hide common/, php/, on articler.bpharris.uk
+
+-------------------------------------------------------------------------------
+
+Parse b, i, u, a inside para ===> proper text rule grammar/parser
+
+proper indentation in Object.to_html (i.e. pass indent level)
 
 set CodeMirror language
 fix indent to tabs
 fix spellcheck, autocorrect, autocapitalize
 set scrollbarStyle, screenReaderLabel, 
 
-media query size <800px => only show editor/viewer one at a time
-
-https redirect
-
 working download buttons
     change to copy-to-clipboard buttons?
 make ctrl+s download
 
-require same number of fa-icon and fa-icontargets in metadata
-
-b, i, u, a inside para ===> proper text rule grammar/parser
-
-proper indentation in Object.to_html (i.e. pass indent level)
-
 fill in readme
-
-move articler/core/ to articler-core repository and submodule
-    add style/themes/ to articler/core/themes/
-Add articler to projects/websites on website
-
 
 parser unittests
 
+
+[TODO : UP NEXT]
 
 auto table of contents
     generate numeric id for each {title, subtitle, subsubtitle, figure}
@@ -45,3 +51,17 @@ auto table of contents should take a level
     \autotoc 6 => table of conents with title and all h1-h6
 manual toc (\toc)
     only include headings with the \toc
+
+
+[TODO : BACKBURNER]
+
+media query width small =>
+    decreade control-bar padding
+    only show editor/viewer one at a time
+
+    add editor control-bar button to switch to, and refresh, viewer
+        hide refresh-viewer button
+    add viewer control-bar button to switch to editor
+media query height small =>
+    hide footer
+    decrease header padding
