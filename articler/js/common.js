@@ -56,6 +56,7 @@ $(function () {
             // line
             "lineWrapping": true,
             "lineNumbers": true,
+            "viewportMargin": Infinity,
 
             "autofocus": true,
 
@@ -84,4 +85,14 @@ function toggle_show_metadata() {
     if (show_metadata = !show_metadata)
         return $(".articler-metadata").slideDown();
     return $(".articler-metadata").slideUp();
+}
+
+
+/** */
+// func
+
+
+/** */
+function increase_editor_font_size() {
+
 }

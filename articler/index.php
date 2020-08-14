@@ -18,24 +18,22 @@
     <div class="control-bar">
         <?php
         // left
-        echo fa_icon_button(
-            "alert('TODO');",
-            "fas fa-minus"
-        );
-        echo fa_icon_button(
-            null,
-            "fas fa-font"
-        );
-        echo fa_icon_button(
-            "alert('TODO');",
-            "fas fa-plus"
-        );
+        echo "<span class=\"text-controls\">";
+            echo fa_icon_button(
+                "alert('TODO');",
+                "fas fa-minus slim");
+            echo fa_icon_button(
+                null,
+                "fas fa-font slim");
+            echo fa_icon_button(
+                "alert('TODO');",
+                "fas fa-plus slim");
+        echo "</span>";
 
         // right
         echo fa_icon_button(
             "alert('TODO');",
-            "fas fa-download fa-icon-right"
-        );
+            "fas fa-download fa-icon-right");
         ?>
     </div>
     <div class="editor-body">
@@ -51,22 +49,18 @@
         echo fa_icon_button(
             "alert('Error: Override in JS.');",
             "fas fa-sync-alt",
-            "refresh-viewer"
-        );
+            "refresh-viewer");
         echo fa_icon_button(
             "toggle_show_debug()",
-            "fas fa-info-circle"     // far for empty
-        );
+            "fas fa-info-circle");
         echo fa_icon_button(
             "toggle_show_metadata()",
-            "fas fa-question-circle" // far for empty
-        );
+            "fas fa-question-circle");
         
         // right
         echo fa_icon_button(
             "alert('TODO');",
-            "fas fa-download fa-icon-right"
-        );
+            "fas fa-download fa-icon-right");
         ?>
     </div>
     <div class="viewer-body"></div>

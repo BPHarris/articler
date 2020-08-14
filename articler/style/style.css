@@ -1,4 +1,4 @@
-/** articler style sheet -- styling for editor */
+/** Articler style sheet */
 
 :root {
     /** Nord Colours **/
@@ -24,149 +24,118 @@
     --nord15: #b48ead;
 
 
-    /** font sizes **/
+    /** Font sizes **/
     --normal:   1em;
-    --large:    2em;
-    --x-large:  3em;
+    --code:     1.2em;
+    --large:    1.5em;
+    --x-large:  2em;
+
+    /** Font weights **/
+    --text:     300;
+    --titile:   400;
 }
 
-
-html {}
-
+/** --------  --------  GLOBAL SETTINGS  --------  -------- **/
+/* Global font settings */
 body {
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-
+    font-weight: var(--text);
     color: var(--nord4);
 }
 
+/** --------  --------  PAGE COLOURS  --------  -------- **/
+header       { background-color: var(--nord2);  }
+footer       { background-color: var(--nord3);  }
+.control-bar { background-color: var(--nord14); }
+.editor      { background-color: var(--nord0);  }
+.viewer      { background-color: var(--nord1);  }
 
+
+/** --------  --------  TEXT ALIGN MODIFIERS  --------  -------- **/
 .left   { text-align: left;   }
 .right  { text-align: right;  }
 .centre { text-align: center; }
 
-.allow-middle-centre { position: relative; }
-.middle-centre {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
-
-/** fullscreen wrapper **/
+/** --------  --------  FULLSCREEN WRAPPER  --------  -------- **/
+/* https://webdesign.tutsplus.com/tutorials/
+   how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086 */
+/* Fullscreen wrapper for header, main, and footer */
 .wrapper {
-    /* fullsreen */
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-/** centred banner **/
-header .centred-banner { font-weight: bold; }
-.centred-banner {
-    font-size: large;
 
-    /* centre */
-    display: flex;
-}
+/** --------  --------  CENTRED BANNER  --------  -------- **/
+/* Centre banner and evenly space children */
+.centred-banner     { display: flex; }
+.centred-banner > * { flex: 1; }
 
 .centred-banner > * {
     padding-left: 1em;
     padding-right: 1em;
-
-    /* full width */
-    flex: 50%;
-}
-@media screen and (max-width: 600px)
-{
-    .centred-banner > * {
-        font-size: small;
-    }
 }
 
 
-/** header **/
-header {
-    background-color: var(--nord2);
+/** --------  --------  HEADER / FOOTER  --------  -------- **/
+header.page-header, footer.page-footer { padding: 1em; }
 
-    border-bottom: 2px;
-    border-color: var(--nord10);
-    border-style: solid;
-
-    padding: 1em;
+/* "A R T I C L E R" title style */
+header.page-header .centred-banner {
+    font-weight: var(--titile);
+    font-size: var(--large);
 }
 
-/** footer **/
-footer {
-    background-color: var(--nord3);
 
-    border-top: 2px;
-    border-color: var(--nord10);
-    border-style: solid;
-
-    padding: 1em;
-
-    text-align: center;
-}
-
-/** Font Awesome icon button **/
-.fa-icon-button {
-    color: var(--nord0);
-    padding-left: 1em;
-    padding-right: 1em;
-}
-.fa-icon-button:hover   { color: var(--nord11); cursor: pointer; }
-.fa-static-icon:hover   { color: var(--nord0);  cursor: default; }
+/** --------  --------  FONT AWESOME  --------  -------- **/
+/* Font Awesome icon button */
+.fa-icon-button         { color: var(--nord0); cursor: pointer; }
+.fa-icon-button:hover   { color: var(--nord11);  }
 .fa-icon-button:visited { text-decoration: none; }
 
-/** Make icon float right **/
-.fa-icon-right { float: right; }
+/* Static icon modifier (no action/link) */
+.fa-static-icon         { pointer-events: none; }
+
+/* Icon position modifiers */
+.fa-icon-left           { float: left;  }
+.fa-icon-right          { float: right; padding-right: 1em; }
+
+/* Font Awesome button padding */
+.fa-icon-button > *     { padding-left: 1em; padding-right: 1em; }
+.fa-icon-button .slim   { padding: 0; }
 
 
-/** page main **/
-.page-main {
-    background-color: black;    /* for debug */
+/** --------  --------  PAGE MAIN LAYOUT  --------  -------- **/
+/* Make page main grow to fullscreen */
+main.page-main { flex-grow: 1; }
 
-    /* fullscreen */
-    flex-grow: 1;
-}
+/* Fullscreen editor|viewer split */
+.editor-viewer-split     { display: flex; height: 100%; }
+.editor-viewer-split > * { flex: 50%; }
 
-
-/** editor viewer split **/
-.editor-viewer-split {
-    display: flex;
-    
-    height: 100%;
-}
+/* Make editor/viewer full height */
 .editor-viewer-split > * {
-    /* split screen */
-    flex: 50%;
-
-    /**/
     display: flex;
     flex-direction: column;
-
-    /** debug **/
-    background-color: var(--nord0);
 }
 
-.editor-body { background-color: var(--nord0); } 
-.viewer-body { background-color: var(--nord1); }
 
+/** --------  --------  EDITOR/VIEWER CONTROL BAR  --------  -------- **/
 .control-bar {
     padding: 1em;
 
-    background-color: var(--nord14);
-
     border-bottom: 2px;
     border-color: var(--nord10);
     border-style: solid;
 }
+.control-bar .text-controls     { padding-left: 1em; }
+.control-bar .text-controls > * { padding-right: 0.5em; }
 
+
+/** --------  --------  EDITOR/VIEWER  --------  -------- **/
 .viewer-body {
-    height: 100%;
-
     padding: 1em;
 
     border-left: 2px;
@@ -174,17 +143,49 @@ footer {
     border-style: solid;
 }
 .editor-body {
-    height: 100%;
-
     font-family: 'Source Code Pro', monospace;
-    font-size: 1.15em;
+    font-size: var(--code);
 
     border: 0;
     margin: 0;
 }
 
-/** Stop empty editor from flashing on load **/
+/* Stop empty editor from flashing on load */
 .editor-body { display: none; }
 
-.editor-body .CodeMirror { width: 100%; height: 100%; }
+/* Make CodeMirror editor full height */
+.editor-body .CodeMirror { height: auto; }
 
+
+/** --------  --------  EDITOR/VIEWER SCROLLBAR  --------  -------- **/
+/* Make editor/viewer fullheight and scrollable */
+.editor-body,
+.viewer-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    height: 0px;
+}
+
+/* https://alligator.io/css/css-scrollbars/ */
+/* Firefox (emergine W3C standard) */
+.editor-body,
+.viewer-body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--nord12) var(--nord0);
+}
+
+/* Chrome/Edge/Safari (depricated standard) */
+.editor-body::-webkit-scrollbar,
+.viewer-body::-webkit-scrollbar {
+    width: 8px;     /* 8px equiv. to "scrollbar-width: thin;" */
+}
+.editor-body::-webkit-scrollbar-track,
+.viewer-body::-webkit-scrollbar-track {
+    background: var(--nord0);
+}
+.editor-body::-webkit-scrollbar-thumb,
+.viewer-body::-webkit-scrollbar-thumb {
+    background-color: var(--nord12);
+    border-radius: 2px;
+    border: 1px solid var(--nord0);
+}

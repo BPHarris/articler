@@ -1,9 +1,11 @@
-neater html
+change editor font sixe buttons
 allow numbers in id (but not FIRST(id))
 set CodeMirror language
 fix indent to tabs
 fix spellcheck, autocorrect, autocapitalize
 set scrollbarStyle, screenReaderLabel, 
+
+media query size <800px => only show editor/viewer one at a time
 
 https redirect
 
