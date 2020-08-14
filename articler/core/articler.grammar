@@ -9,18 +9,15 @@ metadata_tag    ::= 'id'
                 |   'author'
                 |   'date'
                 |   'note'
-                |   'thumbnail'
-                |   'thumbnailtext'
-                |   'thumbnailcaption'
-                |   'fa-icon'
-                |   'fa-icontarget'
+                |   'thumbnail' | 'thumbnailtext' | 'thumbnailcaption'
+                |   'fa-icon'   | 'fa-icontarget'
 
 article_body    ::= (statement | NEWLINE)*
 
-statement       ::= heading
-                |   paragraph
-                |   figure
-                |   command
+statement       ::= heading     => FIRST() = #
+                |   paragraph   => FIRST() = ...
+                |   figure      => FIRST() = !
+                |   html        => FIRST() = '<html>'
 
 heading         ::= '#'      line
                 |   '##'     line
@@ -34,18 +31,24 @@ paragraph       ::= line
 
 figure          ::= '!''[' CAPTION (',' figure_data)* ']''('URL')'
 figure_data     ::= 'width'     '=' INT '%'
-                |   'rounding'  '=' INT
+                |   'rounding'  '=' INT 'px'
 
 // TODO: how to do commands
+// Commands should start with "!"?
 command         ::= '\autotoc' '(' number ')'
                 |   '\toc' '(' ')'
                 |   '\hr'  '(' ')'
 
-// TODO: Full text grammar (allow i, b, u, a, command)
+// TODO: Full text grammar
+// i/em, b, u, a, code (```code```), command)
 text            ::= ASCII - {NEWLINE}   // NOTE: temporary
 line            ::= text NEWLINE
 
-// TODO: review this
+// TODO: review this -- escape html that isnt in these tags
+// Allow disabling html tag
+// parse(article)   =>  parse(article, options)
+// options          =>  {
+//      allow_embed_html_mode : [allow | no_script | none], etc }
 html            ::= '<' 'html' '>' ASCII* '<' '/' 'html' '>'
 
 INT             ::= [0-9]+

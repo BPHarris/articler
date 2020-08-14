@@ -1,10 +1,8 @@
-/** base ast node */
-
-export { AstNode };
+/** Articler -- AST node abstract base class. */
 
 
 /** */
-class AstNode
+export default class AstNode
 {
     constructor() {}
 

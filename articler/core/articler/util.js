@@ -10,9 +10,9 @@ String.prototype.ends_with = String.prototype.endsWith;
 String.prototype.index_of = String.prototype.indexOf;
 
 
-String.prototype.is_css_selector = function () { return this.match(r_css_selector); }
-String.prototype.is_url = function () { return this.match(r_url); }
-String.prototype.is_fa_icon = function () { return this.match(r_fa_icon); }
+String.prototype.is_css_selector = function () { return this.match(r_css_selector); };
+String.prototype.is_url = function () { return this.match(r_url); };
+String.prototype.is_fa_icon = function () { return this.match(r_fa_icon); };
 
 
 /** @return [string] returns this with target removed from the start */
@@ -32,7 +32,7 @@ String.prototype.read_option = function (options) {
         if (this.starts_with(option))
             return [option, this.consume(option)];
     return ["", this];
-}
+};
 
 
 /** @return [before, after]  */
@@ -41,8 +41,8 @@ String.prototype.read_to = function (target) {
     if (index === -1)
         return [this, ""]
     return [this.slice(0, index), this.slice(index + target.length)];
-}
+};
 
 
 /** @return [line, article] @see read_to */
-String.prototype.read_line = function () { return this.read_to("\n"); }
+String.prototype.read_line = function () { return this.read_to("\n"); };

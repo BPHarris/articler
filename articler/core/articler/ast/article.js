@@ -1,10 +1,10 @@
-/** article ast node */
+/** Articler -- Article AST node. */
 
-import { AstNode } from "./AstNode.js";
+import AstNode from "./AstNode.js";
 
 
 /** */
-export class Article extends AstNode
+export default class Article extends AstNode
 {
     constructor(metadata, article_body)
     {

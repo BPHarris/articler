@@ -1,7 +1,7 @@
-/** metadata ast node */
+/** Articler -- Metadata AST node. */
 
 import "../util.js";
-import { AstNode } from "./AstNode.js";
+import AstNode from "./AstNode.js";
 
 import {
     MetadataRepetitionError,
@@ -13,7 +13,7 @@ import {
 
 
 /** */
-export class Metadata extends AstNode
+export default class Metadata extends AstNode
 {
     static allowed_metadata_tags = [
         "id", "title", "author", "date", "note",

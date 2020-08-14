@@ -1,20 +1,19 @@
-/** article body ast node */
+/** Articler -- ArticleBody AST node. */
 
-import { AstNode } from "./AstNode.js";
+import AstNode from "./AstNode.js";
 
 
 /** */
-export class ArticleBody extends AstNode
+export default class ArticleBody extends AstNode
 {
-    constructor(tmp)
+    constructor(statements)
     {
         super();
-
-        this.tmp = tmp;
+        this.statements = statements;
     }
 
     to_html()
     {
-        return this.tmp;
+        return this.statements.join("\n    ");
     }
 }
