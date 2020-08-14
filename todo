@@ -1,13 +1,30 @@
-fullscreen flex
-    left: editor
-    right output
+neater html
+set CodeMirror language
+fix indent to tabs
+fix spellcheck, autocorrect, autocapitalize
+set scrollbarStyle, screenReaderLabel, 
 
 https redirect
-b, i, u, a inside para
 
-proper indentation in Object.to_html
+working download buttons
+    change to copy-to-clipboard buttons?
+make ctrl+s download
 
-unittests
+require same number of fa-icon and fa-icontargets in metadata
+
+b, i, u, a inside para ===> proper text rule grammar/parser
+
+proper indentation in Object.to_html (i.e. pass indent level)
+
+fill in readme
+
+move articler/core/ to articler-core repository and submodule
+    add style/themes/ to articler/core/themes/
+Add articler to projects/websites on website
+
+
+parser unittests
+
 
 auto table of contents
     generate numeric id for each {title, subtitle, subsubtitle, figure}
@@ -18,9 +35,10 @@ auto table of contents
     toc format
         foreach id:
             <a href="#id">indent + id number + title/subtitle/subsubtitle/figure</a>
-ability to ommit from toc
-
-Readme
-
-Set up articler as subdomain on website
-Add articler to projects/websites on website
+auto table of contents should take a level
+    \autotoc 1 => table of conents with title and all headings
+    \autotoc 2 => table of conents with title and all headings/subheadings
+        ...    => ...
+    \autotoc 6 => table of conents with title and all h1-h6
+manual toc (\toc)
+    only include headings with the \toc

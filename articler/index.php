@@ -51,8 +51,10 @@
                 // done, but only if there was a fade out
                 // $(...).length = 0 when no fade out, = 1 otherwise
                 setTimeout(() => {
-                    $(".viewer-body").html(
-                        to_html_debug(code_mirror.getValue()));
+                    var as_html = to_html_debug(code_mirror.getValue());
+                    console.log(as_html);
+                    
+                    $(".viewer-body").html(as_html);
                     $(".articler-article").hide();
                     $(".articler-article").fadeIn();
 

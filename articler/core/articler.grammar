@@ -37,10 +37,11 @@ figure_data     ::= 'width'     '=' INT '%'
                 |   'rounding'  '=' INT
 
 // TODO: how to do commands
-command         ::= '?toc'
-                |   '?hr'
+command         ::= '\autotoc' '(' number ')'
+                |   '\toc' '(' ')'
+                |   '\hr'  '(' ')'
 
-// TODO: Full text grammar (allow i, b, u, a)
+// TODO: Full text grammar (allow i, b, u, a, command)
 text            ::= ASCII - {NEWLINE}   // NOTE: temporary
 line            ::= text NEWLINE
 

@@ -31,8 +31,10 @@ var show_metadata = false;
 
 
 $(function () {
+    // Set default article text
     $(".editor-body textarea").html(text);
 
+    // Set code editor
     $(".editor-body").fadeIn();
     code_mirror = CodeMirror.fromTextArea(
         $(".editor-body textarea").get(0),
@@ -48,8 +50,6 @@ $(function () {
             "theme": "nord",
 
             // indents
-            "indentUnit": 4,
-            "smartIndent": true,
             "tabSize": 4,
             "indentWithTabs": false,
             
@@ -66,6 +66,7 @@ $(function () {
         }
     );
 
+    // Load article HTML to viewer
     document.refresh_viewer();
 });
 
