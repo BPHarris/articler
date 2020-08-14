@@ -4,8 +4,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>articler</title>
-        <meta name="description" content="Articler article creator.">
+        <title>Articler: Article Creator</title>
+        <meta name="description" content="Articler: Article Creator.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!-- Fonts -->
