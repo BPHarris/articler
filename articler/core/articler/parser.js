@@ -86,9 +86,12 @@ function parse_metadata_line(article)
     
     article = article.skip_whitespace(" ");
     
-    [metadata_tag, article] = article.read_option(Metadata.allowed_metadata_tags);
+    [metadata_tag, article] = article.read_option(
+        Metadata.allowed_metadata_tags);
     if (!metadata_tag)
-        return [new UnrecognisedMetadataTagError(Metadata.allowed_metadata_tags), article];
+        return [new UnrecognisedMetadataTagError(
+                Metadata.allowed_metadata_tags, article.read_to("=")[0]),
+                article];
     
     article = article.skip_whitespace(" ");
     

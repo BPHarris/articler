@@ -1,9 +1,14 @@
 /** metadata ast node */
 
+import "../util.js";
 import { AstNode } from "./AstNode.js";
 
 import {
-    IllegalMetadataError, MetadataRepetitionError
+    MetadataRepetitionError,
+    MetadataFaIconMismatchError,
+    CssClassOrIdExpectedError,
+    UrlExpectedError,
+    FontAwesomeIconExpectedError,
 } from "../error.js";
 
 
@@ -13,7 +18,7 @@ export class Metadata extends AstNode
     static allowed_metadata_tags = [
         "id", "title", "author", "date", "note",
         "thumbnailcaption", "thumbnailtext", "thumbnail",
-        "fa-icon", "fa-icontarget"
+        "fa-icontarget", "fa-icon",
     ];
 
     static repeatable_tags = ["note", "fa-icon", "fa-icontarget"];
@@ -30,10 +35,7 @@ export class Metadata extends AstNode
             });
     }
 
-    /** 
-     * // NOTE: assumes tag not in repeatable_tags
-     * @return the metadata corresponding to the given tag or null
-     */
+    /** @return the first metadata.data corresponding to the given tag */
     get(tag)
     {
         for (const pair of this.metadata)
@@ -46,6 +48,8 @@ export class Metadata extends AstNode
     is_legal(lineno)
     {
         var seen = [];
+        var fa_icon_count = 0;
+        var fa_icon_target_count = 0;
 
         for (const pair of this.metadata)
         {
@@ -54,10 +58,21 @@ export class Metadata extends AstNode
                 return new MetadataRepetitionError(pair.tag, lineno);
             seen.push(pair.tag);
 
-            if (pair.tag === "id" && !pair.data.match(/^[a-z-]*$/i))
-                return new IllegalMetadataError(pair.tag, lineno);
+            if (pair.tag === "fa-icon")         fa_icon_count++;
+            if (pair.tag === "fa-icontarget")   fa_icon_target_count++;
+
+            if (pair.tag === "id" && !pair.data.is_css_selector())
+                return new CssClassOrIdExpectedError(pair.tag, lineno);
+            if (pair.tag === "thumbnail" && !pair.data.is_url())
+                return new UrlExpectedError(pair.tag, lineno);
+            if (pair.tag === "fa-icon" && !pair.data.is_fa_icon())
+                return new FontAwesomeIconExpectedError(pair.tag, lineno);
+            if (pair.tag === "fa-icontarget" && !pair.data.is_url())
+                return new UrlExpectedError(pair.tag, lineno);
         }
 
+        if (fa_icon_count !== fa_icon_target_count)
+            return new MetadataFaIconMismatchError(lineno);
         return true;
     }
 

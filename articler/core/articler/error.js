@@ -2,11 +2,17 @@
 
 export {
     ArticlerError,
+    /* Metadat Specific */
     UnrecognisedMetadataTagError,
-    IllegalMetadataError,
     MetadataRepetitionError,
+    MetadataFaIconMismatchError,
+    /* Generic Errors */
     UnexpectedTokenError,
     NewlineExpectedError,
+    /* String Format Errors */
+    CssClassOrIdExpectedError,
+    UrlExpectedError,
+    FontAwesomeIconExpectedError,
 };
 
 
@@ -43,28 +49,33 @@ class ArticlerError
 /** */
 class UnrecognisedMetadataTagError extends ArticlerError
 {
-    constructor(allowed_tags, lineno)
+    constructor(allowed_tags, got, lineno)
     {
-        super("UnrecognisedMetadataTagError", `expected one of ${allowed_tags}`, lineno);
+        super("UnrecognisedMetadataTagError",
+            `Metadata expects a tag in [${allowed_tags}] but got "${got}"`,
+            lineno);
     }
 }
 
-
-/** */
-class IllegalMetadataError extends ArticlerError
-{
-    constructor(tag, lineno)
-    {
-        super("IllegalMetadataError", `illegal data for tag "${tag}"`, lineno);
-    }
-}
 
 /** */
 class MetadataRepetitionError extends ArticlerError
 {
     constructor(tag, lineno)
     {
-        super("MetadataRepetitionError", `metadata for "${tag}" is already set`, lineno);
+        super("MetadataRepetitionError",
+            `Metadata for non-repeatable tag "${tag}" is already set`, lineno);
+    }
+}
+
+
+/** */
+class MetadataFaIconMismatchError extends ArticlerError
+{
+    constructor(lineno)
+    {
+        super("MetadataFaIconMismatchError",
+            `Mismatched number of fa-icon and fa-icontarget tags`, lineno);
     }
 }
 
@@ -74,7 +85,8 @@ class UnexpectedTokenError extends ArticlerError
 {
     constructor(expected, got, lineno)
     {
-        super("UnexpectedTokenError", `expected "${expected}" got "${got}"`, lineno);
+        super("UnexpectedTokenError",
+            `Expected "${expected}" got "${got}"`, lineno);
     }
 }
 
@@ -82,9 +94,44 @@ class UnexpectedTokenError extends ArticlerError
 /** */
 class NewlineExpectedError extends ArticlerError
 {
-    constructor(after_what, lineno)
+    constructor(what, lineno)
     {
-        super("NewlineExpectedError", `newline expected after ${after_what}`, lineno);
+        super("NewlineExpectedError",
+            `Newline expected after ${what}`, lineno);
     }
 }
 
+
+/** */
+class CssClassOrIdExpectedError extends ArticlerError
+{
+    constructor(what, lineno)
+    {
+        super("CssClassOrIdExpectedError",
+            `Valid CSS class/id expected by "${what}" ` +
+            `i.e. /^[a-zA-Z-][a-zA-Z0-9-]*$/`, lineno);
+    }
+}
+
+
+/** */
+class UrlExpectedError extends ArticlerError
+{
+    constructor(what, lineno)
+    {
+        super("UrlExpectedError",
+            `Legal URL with http(s) prefix expected by "${what}"`, lineno);
+    }
+}
+
+
+/** */
+class FontAwesomeIconExpectedError extends ArticlerError
+{
+    constructor(what, lineno)
+    {
+        super("FontAwesomeIconExpectedError",
+            `Font Awesome icon expected by "${what}" ` +
+            `e.g. "far fa-square"`, lineno);
+    }
+}
