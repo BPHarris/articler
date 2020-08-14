@@ -1,4 +1,3 @@
-<!-- Interface to articler module -->
 <script type="module">
     import {to_html_debug} from "./core/articler.js";
 
