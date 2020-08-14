@@ -117,7 +117,12 @@ footer {
     padding-right: 1em;
 }
 .fa-icon-button:hover   { color: var(--nord11); cursor: pointer; }
+.fa-static-icon:hover   { color: var(--nord0);  cursor: default; }
 .fa-icon-button:visited { text-decoration: none; }
+
+/** Make icon float right **/
+.fa-icon-right { float: right; }
+
 
 /** page main **/
 .page-main {
@@ -171,7 +176,8 @@ footer {
 .editor-body {
     height: 100%;
 
-    font-family: 'Inconsolata', monospace;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.15em;
 
     border: 0;
     margin: 0;

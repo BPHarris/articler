@@ -1,4 +1,5 @@
 neater html
+allow numbers in id (but not FIRST(id))
 set CodeMirror language
 fix indent to tabs
 fix spellcheck, autocorrect, autocapitalize
