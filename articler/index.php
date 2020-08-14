@@ -20,13 +20,13 @@
         // left
         echo "<span class=\"text-controls\">";
             echo fa_icon_button(
-                "alert('TODO');",
+                "decrease_editor_font_size();",
                 "fas fa-minus slim");
             echo fa_icon_button(
                 null,
                 "fas fa-font slim");
             echo fa_icon_button(
-                "alert('TODO');",
+                "increase_editor_font_size();",
                 "fas fa-plus slim");
         echo "</span>";
 
