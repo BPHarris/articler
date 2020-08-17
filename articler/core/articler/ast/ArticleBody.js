@@ -14,6 +14,11 @@ export default class ArticleBody extends AstNode
 
     to_html()
     {
-        return this.statements.join("\n    ");
+        var statements_html = [], statement;
+
+        for (statement of this.statements)
+            statements_html.push(statement.to_html());
+
+        return statements_html.join("\n");
     }
 }

@@ -12,16 +12,16 @@ var text = `
 
 <!-- allows html style comments (only after metadata) -->
 <!-- Cheats below -->
-<h1>Heading</h1>
-<p>Sample Text<p>
-<p>Even more sample text<p>
+# Heading One
+Sample Text
+Even more sample text
 
-<h1>Another Heading</h1>
-<h2>With a subheading!</h2>
-<p>Lorem Ipsum<p>
+# Another Heading
+## With a subheading!
+Lorem Ipsum
 
-<h1>A Heading Again</h1>
-<p>Where are we heading though?<p>
+# A Heading Again
+Where are we heading though?
 `;
 
 var code_mirror;

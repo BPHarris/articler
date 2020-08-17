@@ -46,3 +46,7 @@ String.prototype.read_to = function (target) {
 
 /** @return [line, article] @see read_to */
 String.prototype.read_line = function () { return this.read_to("\n"); };
+
+
+/** @return [bool] */
+String.prototype.at_end = function () { return this == "" };

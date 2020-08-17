@@ -123,7 +123,8 @@ function parse_article_body(article)
     {
         article = article.skip_whitespace();
 
-        if (!article) break;
+        if (!article)
+            break;
 
         if (article.starts_with("#"))
             [statement, article] = parse_heading(article);
@@ -167,6 +168,9 @@ function parse_heading(article)
     else // (article.starts_with("#"))
         level = 1;
 
+    article = article.consume("#".repeat(level));
+    article = article.skip_whitespace();
+
     [heading, article] = article.read_line();
 
     return [new Heading(level, heading), article];
@@ -187,8 +191,10 @@ function parse_paragraph(article)
         [line, article] = article.read_line();
         lines.push(line);
     } while (!article.starts_with("\n")
-          || !article.starts_with("#")
-          || !article.starts_with("!"));
+          && !article.starts_with("#")
+          && !article.starts_with("!")
+          && !article.starts_with("<html>")
+          && !article.at_end());
 
     return [new Paragraph(lines.join(" ")), article];
 }

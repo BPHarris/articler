@@ -15,7 +15,7 @@ metadata_tag    ::= 'id'
 article_body    ::= (statement | NEWLINE)*
 
 statement       ::= heading     => FIRST() = #
-                |   paragraph   => FIRST() = ...
+                |   paragraph   => FIRST() = ¬(#, !, <html>, \n)
                 |   figure      => FIRST() = !
                 |   html        => FIRST() = '<html>'
 

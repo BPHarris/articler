@@ -3,6 +3,7 @@
 Https redirect
 
 Parse headings, paragraphs, figures
+proper indentation in Object.to_html (i.e. pass indent level)
 
 Move articler/core/ to articler-core repository and submodule
     Move style/themes/ to articler/core/themes/
@@ -11,13 +12,13 @@ Add articler to projects/websites on website
 Host on articler.bpharris.uk
 Hide common/, php/, on articler.bpharris.uk
 
+add comments to grammar (html, //, or #?)
+
 escape html
 parse_html
 parser options
 
 Parse b, i, u, a inside para ===> proper text rule grammar/parser
-
-proper indentation in Object.to_html (i.e. pass indent level)
 
 -------------------------------------------------------------------------------
 
