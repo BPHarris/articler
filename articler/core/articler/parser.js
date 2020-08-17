@@ -196,7 +196,7 @@ function parse_paragraph(article)
           && !article.starts_with("<html>")
           && !article.at_end());
 
-    return [new Paragraph(lines.join(" ")), article];
+    return [new Paragraph(lines.join("\n")), article];
 }
 
 
@@ -217,6 +217,8 @@ function parse_figure(article)
 
     // Parse caption
     // TODO: figure_data
+    // TODO: Check caption regex
+    // TODO: Check url regex
     [caption, article] = article.read_to("]");
     if (!article)
         return [new UnexpectedTokenError("]", "end-of-file"), article];
@@ -230,7 +232,6 @@ function parse_figure(article)
         return [new UnexpectedTokenError(")", "end-of-file"), article];
     article = article.consume(")");
 
-    console.log((new Figure(caption, url)).to_html());
     return [new Figure(caption, url), article];
 }
 

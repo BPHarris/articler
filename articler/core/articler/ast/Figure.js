@@ -41,9 +41,10 @@ export default class Figure extends AstNode
         return html;
     }
 
-    to_html()
+    to_html(indent = 0, indent_str = "    ")
     {
-        return (this.width || this.rounding) ?
+        var html = (this.width || this.rounding) ?
             this.html_with_style() : this.html_without_style();
+        return html.indent(indent, indent_str) + "\n";
     }
 }

@@ -2,6 +2,8 @@
 
 import AstNode from "./AstNode.js";
 
+import "../util.js";
+
 
 /** */
 export default class Article extends AstNode
@@ -14,16 +16,22 @@ export default class Article extends AstNode
         this.article_body = article_body;       // type: ArticleBody
     }
 
-    to_html()
+    to_html(indent = 0, indent_str = "    ")
     {
-        var html =
-`<div class="articler-article" id="${this.metadata.get("id")}">
-    <div class="articler-debug"></div>
-    ${this.metadata.to_html()}
-    <div class="articler-title">${this.metadata.get("title")}</div>
-    ${this.article_body.to_html()}
-</div>`;
+        var i = indent_str, html = "";
+        var id = this.metadata.get("id");
+        var title = this.metadata.get("title");
 
-        return html;
+        html += `<div class="articler-article" id="${id}">\n`;
+        html += i + `<div class="articler-debug"></div>\n`;
+        html += `\n`;
+        html += `${this.metadata.to_html(1, i)}\n`;
+        html += `\n`;
+        html += `${i}<div class="articler-title">${title}</div>\n`;
+        html += `\n`;
+        html += `${this.article_body.to_html(1, i)}\n`;
+        html += `</div>`;
+
+        return html.indent(indent, indent_str);
     }
 }

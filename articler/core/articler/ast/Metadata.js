@@ -77,17 +77,19 @@ export default class Metadata extends AstNode
     }
 
     /** */
-    to_html()
+    to_html(indent = 0, indent_str = "    ")
     {
-        var i = "        ";
-        var tag_html = "";
-        for (const pair of this.metadata)
-        {
-            tag_html += i + `<div class="metadata">\n`;
-            tag_html += i + `    <div class="tag">${pair.tag}</div>\n`;
-            tag_html += i + `    <div class="data">${pair.data}</div>\n`;
-            tag_html += i + `</div>\n`;
+        var i = indent_str, html = "";
+
+        html += `<div class="articler-metadata">\n`;
+        for (const pair of this.metadata) {
+            html += i + `<div class="metadata">\n`;
+            html += i + i + `<div class="tag">${pair.tag}</div>\n`;
+            html += i + i + `<div class="data">${pair.data}</div>\n`;
+            html += i + `</div>\n`;
         }
-        return `<div class="articler-metadata">\n${tag_html}    </div>`;
+        html += `</div>`
+        
+        return html.indent(indent, indent_str);
     }
 }

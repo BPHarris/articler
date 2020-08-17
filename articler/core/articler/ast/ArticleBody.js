@@ -12,13 +12,15 @@ export default class ArticleBody extends AstNode
         this.statements = statements;
     }
 
-    to_html()
+    to_html(indent = 0, indent_str = "    ")
     {
-        var statements_html = [], statement;
+        var html = "", statement;
 
+        html += `<div class="articler-body">\n`;
         for (statement of this.statements)
-            statements_html.push(statement.to_html());
+            html += statement.to_html(1, indent_str) + "\n";
+        html += `</div>`
 
-        return statements_html.join("\n");
+        return html.indent(indent, indent_str);
     }
 }

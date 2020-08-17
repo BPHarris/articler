@@ -14,9 +14,9 @@ export default class Heading extends AstNode
         this.heading = heading;
     }
 
-    to_html()
+    to_html(indent = 0, indent_str = "    ")
     {
         var hn = "h" + String(this.level);
-        return `<${hn}>${this.heading}</${hn}>`;
+        return indent_str + `<${hn}>${this.heading}</${hn}>`;
     }
 }

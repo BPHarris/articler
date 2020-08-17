@@ -2,9 +2,6 @@
 
 Https redirect
 
-Parse headings, paragraphs, figures
-proper indentation in Object.to_html (i.e. pass indent level)
-
 Move articler/core/ to articler-core repository and submodule
     Move style/themes/ to articler/core/themes/
 Add articler to projects/websites on website

@@ -6,9 +6,9 @@ export default class AstNode
 {
     constructor() {}
 
-    to_html()
+    to_html(indent = 0, indent_str = "    ")
     {
-        return `<p>${this.to_string()}</p>`;
+        return `<div class="ast-node">${this.to_string()}</div>`;
     }
 
     to_string()

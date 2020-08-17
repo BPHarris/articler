@@ -50,3 +50,12 @@ String.prototype.read_line = function () { return this.read_to("\n"); };
 
 /** @return [bool] */
 String.prototype.at_end = function () { return this == "" };
+
+
+/** @return [string] indent a strings lines by n indents */
+String.prototype.indent = function(n, indent_str) {
+    if (this.split("\n") === this)
+        return indent_str.repeat(n) + this;
+    return indent_str.repeat(n)
+        + this.split("\n").join("\n" + indent_str.repeat(n));
+}
