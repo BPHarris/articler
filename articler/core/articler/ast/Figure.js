@@ -23,20 +23,22 @@ export default class Figure extends AstNode
     {
         var s_width = this.width ?  `width: ${this.width}%` : "";
         var s_rounding = this.rounding ? `rounding: ${this.rounding}px` : "";
-        return
+        var html =
 `<figure style="${s_width}; ${s_rounding};">
     <img src="${this.url}" alt="${this.alt}"></img>
     <figcaption>${this.caption}</figcaption>
 </figure>`;
+        return html;
     }
 
     html_without_style()
     {
-        return
+        var html = 
 `<figure>
     <img src="${this.url}" alt="${this.alt}"></img>
     <figcaption>${this.caption}</figcaption>
 </figure>`;
+        return html;
     }
 
     to_html()

@@ -230,6 +230,7 @@ function parse_figure(article)
         return [new UnexpectedTokenError(")", "end-of-file"), article];
     article = article.consume(")");
 
+    console.log((new Figure(caption, url)).to_html());
     return [new Figure(caption, url), article];
 }
 
