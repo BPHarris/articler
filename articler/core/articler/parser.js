@@ -8,6 +8,7 @@ import ArticleBody from "./ast/ArticleBody.js";
 import Heading from "./ast/Heading.js";
 import Paragraph from "./ast/Paragraph.js";
 import Figure from "./ast/Figure.js";
+import LineComment from "./ast/LineComment.js";
 
 
 import {
@@ -135,11 +136,17 @@ function parse_article_body(article)
             [statement, article] = parse_figure(article);
         else if (article.starts_with("<html>"))
             [statement, article] = parse_html(article);
+        else if (article.starts_with("<!--"))
+            [statement, article] = parse_line_comment(article);
+        else if (article.starts_with("```"))
+            [statement, article] = parse_code_block(article);
         else
             [statement, article] = parse_paragraph(article);
         
         if (statement instanceof ArticlerError)
             return [statement, article];
+        // if (statement instanceof LineComment)
+        //     continue;
         statements.push(statement);
     }
 
@@ -172,7 +179,6 @@ function parse_heading(article)
         level = 1;
 
     article = article.consume("#".repeat(level));
-    article = article.skip_whitespace();
 
     [heading, article] = article.read_line();
     heading = heading.trim();
@@ -233,6 +239,7 @@ function parse_figure(article)
         return [new UnexpectedTokenError("(", article[0]), article];
     article = article.consume("(");
 
+    // Parse URL
     [url, article] = article.read_to(")");
     url = url.trim();
     if (!article)
@@ -250,5 +257,35 @@ function parse_figure(article)
  */
 function parse_html(article)
 {
-    return new ArticlerError("NotImplementedError", "HTML");
+    return [new ArticlerError("NotImplementedError", "HTML"), article];
+}
+
+
+/**
+ * line_comment ::= '<!--' text '-->' NEWLINE
+ * 
+ * @return [LineComment | ArticlerError, article']
+ */
+function parse_line_comment(article)
+{
+    var text;
+    
+    article = article.consume("<!--");
+
+    [text, article] = article.read_line("-->");
+    if(!text.ends_with("-->"))
+        return [new UnexpectedTokenError("TEXT -->", text), article];
+    text = text.slice(0, -3); // consume "-->"
+    text = text.trim();
+
+    return [new LineComment(text), article];
+}
+
+
+/**
+ * // TODO: Parser
+ */
+function parse_code_block(article)
+{
+    return [new ArticlerError("NotImplementedError", "Code Block"), article];
 }

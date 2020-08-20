@@ -1,14 +1,6 @@
 [TODO : DOING]
 
-Check caption regex
-Check url regex
-figure data regex
-
 add comments to grammar
-
-better errors in new parser functions
-
--------------------------------------------------------------------------------
 
 Move articler/core/ to articler-core repository and submodule
     Move style/themes/ to articler/core/themes/
@@ -21,17 +13,22 @@ Create default articler theme
 Host on articler.bpharris.uk
 Hide common/, php/, on articler.bpharris.uk
 
--------------------------------------------------------------------------------
+Parse b**, i*, u, a, & code inside para ===> proper text rule grammar/parser
+inline code or block code
 
-Parse b, i, u, a inside para ===> proper text rule grammar/parser
+-------------------------------------------------------------------------------
 
 escape html
 parse_html
-parser options
+parser options (allow_embed_html, output_comments)
 
 figure_data
+figure_data regex
 
 line numbers in errors
+better errors in new parser functions
+
+better comment char (<!-- => //?)
 
 -------------------------------------------------------------------------------
 

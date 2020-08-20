@@ -15,10 +15,11 @@ metadata_tag    ::= 'id'
 article_body    ::= (statement | NEWLINE)*
 
 statement       ::= heading         => FIRST() = #
-                |   paragraph       => FIRST() = ¬(#, !, <html>, \n)
+                |   paragraph       => FIRST() = ¬(#, !, <html>, \n, ```, <!--)
                 |   figure          => FIRST() = !
                 |   html            => FIRST() = '<html>'
-                |   line_comment    => FIRST() = ...
+                |   line_comment    => FIRST() = <!--
+                |   code_block      => FIRST() = '```'
 
 heading         ::= '#'      line
                 |   '##'     line
@@ -41,15 +42,16 @@ figure_data     ::= 'width'     '=' INT '%'
 //      allow_embed_html_mode : [allow | no_script | none], etc }
 html            ::= '<' 'html' '>' ASCII* '<' '/' 'html' '>'
 
-// TODO: Line comments
-line_comment    ::= ...
+line_comment    ::= '<!--' text '-->' NEWLINE
+
+code_block      ::= '```' (text | line)* '```'
 
 // TODO: how to do commands, commands should start with "!"?
 command         ::= '\autotoc' '(' number ')'
                 |   '\toc' '(' ')'
                 |   '\hr'  '(' ')'
 
-// TODO: Full text grammar :i/em, b, u, a, code (```code```), command
+// TODO: Full text grammar: i/em, b, u, a, code (```code```), command
 text            ::= ASCII - {NEWLINE}   // NOTE: temporary
 line            ::= text NEWLINE
 
