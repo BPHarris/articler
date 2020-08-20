@@ -3,17 +3,18 @@
 const r_css_selector = /^[a-zA-Z-][a-zA-Z0-9-]*$/;
 const r_url = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/;
 const r_fa_icon = /^fa[srldb]? [a-z-]*$/;
-const r_caption = /^$/;
-
-
-String.prototype.starts_with = String.prototype.startsWith;
-String.prototype.ends_with = String.prototype.endsWith;
-String.prototype.index_of = String.prototype.indexOf;
+const r_caption = /^[-a-zA-Z0-9@:%._\//+~#= ]*$/;
 
 
 String.prototype.is_css_selector = function () { return this.match(r_css_selector); };
 String.prototype.is_url = function () { return this.match(r_url); };
 String.prototype.is_fa_icon = function () { return this.match(r_fa_icon); };
+String.prototype.is_caption = function () { return this.match(r_caption); };
+
+
+String.prototype.starts_with = String.prototype.startsWith;
+String.prototype.ends_with = String.prototype.endsWith;
+String.prototype.index_of = String.prototype.indexOf;
 
 
 /** @return [string] returns this with target removed from the start */

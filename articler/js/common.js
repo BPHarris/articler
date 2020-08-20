@@ -15,7 +15,7 @@ var text = `
 # Heading One
 Sample Text
 Even more sample text
-![test](another test)
+![test](https://example.com/image.png)
 
 # Another Heading
 ## With a subheading!

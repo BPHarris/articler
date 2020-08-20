@@ -2,7 +2,7 @@
 
 export {
     ArticlerError,
-    /* Metadat Specific */
+    /* Metadata Specific */
     UnrecognisedMetadataTagError,
     MetadataRepetitionError,
     MetadataFaIconMismatchError,
@@ -13,6 +13,9 @@ export {
     CssClassOrIdExpectedError,
     UrlExpectedError,
     FontAwesomeIconExpectedError,
+    CaptionExpectedError,
+    /* Parser - Heading */
+    HeadingLevelError,
 };
 
 
@@ -135,3 +138,26 @@ class FontAwesomeIconExpectedError extends ArticlerError
             `e.g. "far fa-square"`, lineno);
     }
 }
+
+
+/** */
+class CaptionExpectedError extends ArticlerError
+{
+    constructor(what, lineno)
+    {
+        super("CaptionExpectedError",
+            `Valid caption expected by "${what}"`, lineno);
+    }
+}
+
+
+/** */
+class HeadingLevelError extends ArticlerError
+{
+    constructor(lineno)
+    {
+        super("HeadingLevelError", `Articler only supports heading of ` +
+            `level 1 to 6`, lineno);
+    }
+}
+

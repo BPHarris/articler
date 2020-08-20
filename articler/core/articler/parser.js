@@ -15,6 +15,9 @@ import {
     UnrecognisedMetadataTagError,
     UnexpectedTokenError,
     NewlineExpectedError,
+    HeadingLevelError,
+    CaptionExpectedError,
+    UrlExpectedError,
 } from "./error.js";
 
 
@@ -154,7 +157,7 @@ function parse_heading(article)
     var level = 0, heading;
 
     if (article.starts_with("#######"))
-        return new ArticlerError("7", "7777777777777777777");
+        return [new HeadingLevelError(), article];
     else if (article.starts_with("######"))
         level = 6;
     else if (article.starts_with("#####"))
@@ -219,12 +222,12 @@ function parse_figure(article)
 
     // Parse caption
     // TODO: figure_data
-    // TODO: Check caption regex
-    // TODO: Check url regex
     [caption, article] = article.read_to("]");
     caption = caption.trim();
     if (!article)
         return [new UnexpectedTokenError("]", "end-of-file"), article];
+    if (!caption.is_caption())
+        return [new CaptionExpectedError("Figure"), article];
     
     if (!article.starts_with("("))
         return [new UnexpectedTokenError("(", article[0]), article];
@@ -234,7 +237,8 @@ function parse_figure(article)
     url = url.trim();
     if (!article)
         return [new UnexpectedTokenError(")", "end-of-file"), article];
-    article = article.consume(")");
+    if(!url.is_url())
+        return [new UrlExpectedError("Figure"), article];
 
     return [new Figure(caption, url), article];
 }
