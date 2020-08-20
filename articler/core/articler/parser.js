@@ -4,11 +4,15 @@ import "./util.js";
 
 import Article from "./ast/article.js";
 import Metadata from "./ast/Metadata.js";
+
 import ArticleBody from "./ast/ArticleBody.js";
+
 import Heading from "./ast/Heading.js";
 import Paragraph from "./ast/Paragraph.js";
 import Figure from "./ast/Figure.js";
+import HtmlBlock from "./ast/HtmlBlock.js";
 import LineComment from "./ast/LineComment.js";
+import CodeBlock from "./ast/CodeBlock.js";
 
 
 import {
@@ -205,6 +209,8 @@ function parse_paragraph(article)
           && !article.starts_with("#")
           && !article.starts_with("!")
           && !article.starts_with("<html>")
+          && !article.starts_with("<!--")
+          && !article.starts_with("```")
           && !article.is_at_end());
 
     return [new Paragraph(lines.join("\n")), article];
@@ -252,12 +258,21 @@ function parse_figure(article)
 
 
 /**
- * // TODO: Refine grammar
- * // TODO: Parser
+ * html ::= '<' 'html' '>' (text | line)* '<' '/' 'html' '>'
  */
 function parse_html(article)
 {
-    return [new ArticlerError("NotImplementedError", "HTML"), article];
+    var html;
+
+    article = article.consume("<html>");
+
+    [html, article] = article.read_to("</html>");
+    if (!article)
+        return [new UnexpectedTokenError("</html>", "end-of-file"), article];
+    html = html.trim();
+
+
+    return [new HtmlBlock(html), article];
 }
 
 
@@ -272,9 +287,9 @@ function parse_line_comment(article)
     
     article = article.consume("<!--");
 
-    [text, article] = article.read_line("-->");
-    if(!text.ends_with("-->"))
-        return [new UnexpectedTokenError("TEXT -->", text), article];
+    [text, article] = article.read_line();
+    if (!text.ends_with("-->"))
+        return [new UnexpectedTokenError("TEXT* -->", text), article];
     text = text.slice(0, -3); // consume "-->"
     text = text.trim();
 
@@ -283,9 +298,26 @@ function parse_line_comment(article)
 
 
 /**
- * // TODO: Parser
+ * code_block ::= '\```' (text | line)* '\```'
+ * NB: Added \ to grammar for VSCode hover-peak, \ is not in grammar
  */
 function parse_code_block(article)
 {
-    return [new ArticlerError("NotImplementedError", "Code Block"), article];
+    var code;
+
+    article = article.consume("```");
+
+    [code, article] = article.read_to("```");
+    if (!article)
+        return [new UnexpectedTokenError("```", "end-of-file"), article];
+    code = code.trim();
+
+    // Format code
+    // FIXME: Assumes all lines are indented by 1
+    //        and if not, forces them to be
+    code = code.replace(/\n(\t|    )/, "<br>\n");
+    code = code.replace("\n", "<br>\n");
+    code += "<br>";
+
+    return [new CodeBlock(code), article];
 }

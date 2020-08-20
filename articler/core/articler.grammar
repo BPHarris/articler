@@ -15,9 +15,9 @@ metadata_tag    ::= 'id'
 article_body    ::= (statement | NEWLINE)*
 
 statement       ::= heading         => FIRST() = #
-                |   paragraph       => FIRST() = ¬(#, !, <html>, \n, ```, <!--)
+                |   paragraph       => FIRST() = ¬(\n, #, !, <html>, ```, <!--)
                 |   figure          => FIRST() = !
-                |   html            => FIRST() = '<html>'
+                |   html_block      => FIRST() = '<html>'
                 |   line_comment    => FIRST() = <!--
                 |   code_block      => FIRST() = '```'
 
@@ -40,7 +40,7 @@ figure_data     ::= 'width'     '=' INT '%'
 // parse(article)   =>  parse(article, options)
 // options          =>  {
 //      allow_embed_html_mode : [allow | no_script | none], etc }
-html            ::= '<' 'html' '>' ASCII* '<' '/' 'html' '>'
+html_block      ::= '<' 'html' '>' (text | line)* '<' '/' 'html' '>'
 
 line_comment    ::= '<!--' text '-->' NEWLINE
 

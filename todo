@@ -1,22 +1,19 @@
 [TODO : DOING]
 
-add comments to grammar
-
 Move articler/core/ to articler-core repository and submodule
     Move style/themes/ to articler/core/themes/
 Add articler to projects/websites on website
-
-Https redirect
 
 Create default articler theme
 
 Host on articler.bpharris.uk
 Hide common/, php/, on articler.bpharris.uk
 
-Parse b**, i*, u, a, & code inside para ===> proper text rule grammar/parser
-inline code or block code
+Parse b**, i*, u, a, & inline-code inside para ===> proper text rule grammar/parser
 
 -------------------------------------------------------------------------------
+
+Https redirect
 
 escape html
 parse_html
@@ -29,6 +26,8 @@ line numbers in errors
 better errors in new parser functions
 
 better comment char (<!-- => //?)
+
+textarea for code-block?
 
 -------------------------------------------------------------------------------
 
