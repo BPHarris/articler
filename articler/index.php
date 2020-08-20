@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <?php require_once("common/head.php"); ?>
-<?php require_once("common/articler-integration.php"); ?>
+<?php require_once("articler-core/articler-integration.html"); ?>
 
 <body>
 <div class="wrapper">

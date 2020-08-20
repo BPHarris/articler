@@ -1,13 +1,14 @@
 [TODO : DOING]
 
-Move articler/core/ to articler-core repository and submodule
-    Move style/themes/ to articler/core/themes/
 Add articler to projects/websites on website
 
 Create default articler theme
+Create bpharris.uk articler theme
 
 Host on articler.bpharris.uk
 Hide common/, php/, on articler.bpharris.uk
+
+add articler-integration.php to articler-core
 
 Parse b**, i*, u, a, & inline-code inside para ===> proper text rule grammar/parser
 
