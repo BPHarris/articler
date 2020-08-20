@@ -3,6 +3,7 @@
 const r_css_selector = /^[a-zA-Z-][a-zA-Z0-9-]*$/;
 const r_url = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/;
 const r_fa_icon = /^fa[srldb]? [a-z-]*$/;
+const r_caption = /^$/;
 
 
 String.prototype.starts_with = String.prototype.startsWith;
@@ -49,7 +50,7 @@ String.prototype.read_line = function () { return this.read_to("\n"); };
 
 
 /** @return [bool] */
-String.prototype.at_end = function () { return this == "" };
+String.prototype.is_at_end = function () { return this == "" };
 
 
 /** @return [string] indent a strings lines by n indents */

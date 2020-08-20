@@ -30,7 +30,7 @@ function parse_article(article)
 {
     var metadata, article_body;
 
-    // NOTE: Fix line endings?
+    // NOTE: Fix line endings
     article = article.replace(/(?:\r\n|\r|\n)/g, "\n");
     
     [metadata, article] = parse_metadata(article);
@@ -172,6 +172,7 @@ function parse_heading(article)
     article = article.skip_whitespace();
 
     [heading, article] = article.read_line();
+    heading = heading.trim();
 
     return [new Heading(level, heading), article];
 }
@@ -187,14 +188,15 @@ function parse_paragraph(article)
     var lines = [], line;
 
     do {
-        article = article.skip_whitespace();    // NOTE: Unneeded on first line
+        article = article.skip_whitespace();
         [line, article] = article.read_line();
+        line = line.trim();
         lines.push(line);
     } while (!article.starts_with("\n")
           && !article.starts_with("#")
           && !article.starts_with("!")
           && !article.starts_with("<html>")
-          && !article.at_end());
+          && !article.is_at_end());
 
     return [new Paragraph(lines.join("\n")), article];
 }
@@ -220,6 +222,7 @@ function parse_figure(article)
     // TODO: Check caption regex
     // TODO: Check url regex
     [caption, article] = article.read_to("]");
+    caption = caption.trim();
     if (!article)
         return [new UnexpectedTokenError("]", "end-of-file"), article];
     
@@ -228,6 +231,7 @@ function parse_figure(article)
     article = article.consume("(");
 
     [url, article] = article.read_to(")");
+    url = url.trim();
     if (!article)
         return [new UnexpectedTokenError(")", "end-of-file"), article];
     article = article.consume(")");

@@ -14,10 +14,11 @@ metadata_tag    ::= 'id'
 
 article_body    ::= (statement | NEWLINE)*
 
-statement       ::= heading     => FIRST() = #
-                |   paragraph   => FIRST() = ¬(#, !, <html>, \n)
-                |   figure      => FIRST() = !
-                |   html        => FIRST() = '<html>'
+statement       ::= heading         => FIRST() = #
+                |   paragraph       => FIRST() = ¬(#, !, <html>, \n)
+                |   figure          => FIRST() = !
+                |   html            => FIRST() = '<html>'
+                |   line_comment    => FIRST() = ...
 
 heading         ::= '#'      line
                 |   '##'     line
@@ -33,23 +34,24 @@ figure          ::= '!''[' CAPTION (',' figure_data)* ']''('URL')'
 figure_data     ::= 'width'     '=' INT '%'
                 |   'rounding'  '=' INT 'px'
 
-// TODO: how to do commands
-// Commands should start with "!"?
-command         ::= '\autotoc' '(' number ')'
-                |   '\toc' '(' ')'
-                |   '\hr'  '(' ')'
-
-// TODO: Full text grammar
-// i/em, b, u, a, code (```code```), command)
-text            ::= ASCII - {NEWLINE}   // NOTE: temporary
-line            ::= text NEWLINE
-
 // TODO: review this -- escape html that isnt in these tags
 // Allow disabling html tag
 // parse(article)   =>  parse(article, options)
 // options          =>  {
 //      allow_embed_html_mode : [allow | no_script | none], etc }
 html            ::= '<' 'html' '>' ASCII* '<' '/' 'html' '>'
+
+// TODO: Line comments
+line_comment    ::= ...
+
+// TODO: how to do commands, commands should start with "!"?
+command         ::= '\autotoc' '(' number ')'
+                |   '\toc' '(' ')'
+                |   '\hr'  '(' ')'
+
+// TODO: Full text grammar :i/em, b, u, a, code (```code```), command
+text            ::= ASCII - {NEWLINE}   // NOTE: temporary
+line            ::= text NEWLINE
 
 INT             ::= [0-9]+
 URL             ::= [a-z A-Z 0-9 \ / - _ . : % @ ? # =]+
