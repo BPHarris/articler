@@ -1,0 +1,3 @@
+[submodule "articler/articler-core"]
+	path = articler/articler-core
+	url = https://github.com/bpharris/articler-core.git

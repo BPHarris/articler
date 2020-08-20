@@ -1,5 +1,5 @@
 <script type="module">
-    import {to_html_debug} from "./core/articler.js";
+    import {to_html_debug} from "./articler-core/core/articler.js";
 
     // HACK: Allow refresh_viewer to be executed anywhere
     document.refresh_viewer = function () {

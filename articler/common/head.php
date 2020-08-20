@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="style/style.css">
 
     <!-- Articler Theme -->
-    <link rel="stylesheet" href="style/themes/articler.css">
+    <link rel="stylesheet" href="articler-core/themes/articler.css">
 
     <!-- jQuery & jQuery UI -->
     <script src="js/jquery/jquery-3.5.1.min.js"></script>
