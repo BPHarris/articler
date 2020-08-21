@@ -1,14 +1,12 @@
 [TODO : DOING]
 
-Add articler to projects/websites on website
-
 Create default articler theme
 Create bpharris.uk articler theme
 
 Host on articler.bpharris.uk
 Hide common/, php/, on articler.bpharris.uk
 
-add articler-integration.php to articler-core
+add get_metadata_from_article_html function to articler-integration
 
 Parse b**, i*, u, a, & inline-code inside para ===> proper text rule grammar/parser
 

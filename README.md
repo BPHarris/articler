@@ -1,5 +1,7 @@
-# articler
-link to hosted version
+# Articler
+Todo: Readme
+
+![Articler Example](resources/example.png)
 
 ## Tutorial
 
