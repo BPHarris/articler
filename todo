@@ -3,6 +3,10 @@
 Create default articler theme
 Create bpharris.uk articler theme
 
+In text, "--" to non-breaking hypen
+
+minify parser code
+
 Host on articler.bpharris.uk
 Hide common/, php/, on articler.bpharris.uk
 
